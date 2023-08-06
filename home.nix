@@ -34,9 +34,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-		fishPlugins.tide
-  	fishPlugins.fzf-fish
- 		fishPlugins.grc
 	];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -87,6 +84,13 @@
 		plugins = [
 	    { name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src; }
 		];
+	};
+
+	dconf.settings = {
+	  "org/virt-manager/virt-manager/connections" = {
+    	autoconnect = ["qemu:///system"];
+  	  uris = ["qemu:///system"];
+	  };
 	};
 
   # Let Home Manager install and manage itself.

@@ -57,7 +57,6 @@
 	services.xserver.desktopManager.plasma5.enable = true;
 	services.xserver.displayManager.defaultSession = "plasmawayland";
 	services.xserver.displayManager.sddm.enable = true;
-  # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
 
   # Configure keymap in X11
@@ -93,7 +92,7 @@
   users.users.mir = {
     isNormalUser = true;
     description = "Naz Mir";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
 		shell = pkgs.fish;
     packages = with pkgs; [
       firefox
@@ -102,6 +101,9 @@
 			kitty
   		fish
 			meslo-lgs-nf
+			fishPlugins.tide
+    	fishPlugins.fzf-fish
+    	fishPlugins.grc
 	  ];
   };
 
@@ -120,10 +122,16 @@
 			grc
 			fzf
 			git
+			virt-manager
  ];
 	
 	programs.fish.enable = true;
+	virtualisation.libvirtd.enable = true;
+	programs.dconf.enable = true;
 
+ 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+	
 	programs.nano = {
 		nanorc = ''
 			set tabsize 2

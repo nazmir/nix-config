@@ -91,7 +91,7 @@
     isNormalUser = true;
     description = "Naz Mir";
     extraGroups = [ "networkmanager" "wheel" "libvirtd"];
-		shell = pkgs.fish;
+    shell = pkgs.fish;
     packages = with pkgs; [
       _1password-gui
 	  ];
@@ -119,8 +119,17 @@
 	
 	virtualisation.libvirtd.enable = true;
 	programs.dconf.enable = true;
+	programs.fish.enable = true;	
 
-	
+
+	programs.nano = {
+		nanorc = ''
+			set tabsize 2
+		'';
+	};
+
+
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

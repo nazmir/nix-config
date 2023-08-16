@@ -15,7 +15,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 					
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -45,7 +44,6 @@
   hardware.opengl = {
     enable = true;
     driSupport = true;
-    driSupport32Bit = true;
   };
 
   # Enable the X11 windowing system.
@@ -95,20 +93,14 @@
     extraGroups = [ "networkmanager" "wheel" "libvirtd"];
 		shell = pkgs.fish;
     packages = with pkgs; [
-      firefox
-      brave
-			_1password-gui
-			kitty
-  		fish
-			meslo-lgs-nf
-			fishPlugins.tide
-    	fishPlugins.fzf-fish
-    	fishPlugins.grc
+      _1password-gui
 	  ];
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+ 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -121,24 +113,14 @@
 			htop
 			grc
 			fzf
-			git
 			virt-manager
+			nvd
  ];
 	
-	programs.fish.enable = true;
 	virtualisation.libvirtd.enable = true;
 	programs.dconf.enable = true;
 
- 	nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
 	
-	programs.nano = {
-		nanorc = ''
-			set tabsize 2
-		'';
-	};
-
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

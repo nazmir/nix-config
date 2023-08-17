@@ -23,10 +23,19 @@
     nixosConfigurations = {
       # FIXME replace with your hostname
       mir-nixos-thinkpad = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        system = "x86_64-linux";
+				specialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
         modules = [ ./nixos/configuration.nix ];
       };
+
+			mir-nixos-mbp = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+				specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main nixos configuration file <
+        modules = [ ./nixos/configuration.nix ];
+      };
+
     };
 
     # Standalone home-manager configuration entrypoint
@@ -34,11 +43,20 @@
     homeConfigurations = {
       # FIXME replace with your username@hostname
       "mir@mir-nixos-thinkpad" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+				#system = "x86_64-linux";        
+				pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
         modules = [ ./home-manager/home.nix ];
       };
+
+			"mir@mir-nixos-mbp" = home-manager.lib.homeManagerConfiguration {
+       	#system = "aarch64-linux";
+			 	pkgs = nixpkgs.legacyPackages."aarch64-linux"; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main home-manager configuration file <
+        modules = [ ./home-manager/home.nix ];
+      };		
     };
   };
 }

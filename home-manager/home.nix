@@ -9,14 +9,24 @@
   home.packages = with pkgs; [
 		firefox
     kitty
-    fish
-    meslo-lgs-nf
+  	git  
+	
+		#fish
+		fish
     fishPlugins.tide
     fishPlugins.fzf-fish
     fishPlugins.grc
 		fishPlugins.colored-man-pages
-		git
-		vim
+				
+		#editors
+		micro
+
+		#fonts
+    meslo-lgs-nf
+		fira-code
+    fira-code-symbols
+    source-code-pro
+
 	];
 
   home.file = {
@@ -53,6 +63,7 @@
     '';
   };
 
+	programs.neovim.enable = true;
 
 	dconf.settings = {
 	  "org/virt-manager/virt-manager/connections" = {

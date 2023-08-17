@@ -1,1 +1,4 @@
 result
+hardware-configuration.nix
+nixos/hardware-configuration.nix.tpad
+*.save

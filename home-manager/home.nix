@@ -29,8 +29,7 @@
 
 	programs.kitty = {
 		enable = true;		
-		theme = "Spacemacs";
-		
+		theme = "Spacemacs";		
 	};
 
 	programs.git = {

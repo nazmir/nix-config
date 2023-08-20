@@ -1,3 +1,4 @@
+
 { config, pkgs, ... }:
 
 {
@@ -8,9 +9,12 @@
 
   home.packages = with pkgs; [
 		firefox
+		chromium
+		brave
     kitty
   	git  
-	
+		fragments	
+
 		#fish
 		fish
     fishPlugins.tide
@@ -31,6 +35,7 @@
 
   home.file = {
   };
+
 
   home.sessionVariables = {
     # EDITOR = "emacs";

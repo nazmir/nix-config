@@ -12,8 +12,19 @@
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-					
+  
+  #boot.loader.grub.enable = true;
+  #boot.loader.grub.device = "nodev";
+  #boot.loader.grub.useOSProber = true;
+	boot.loader.efi.canTouchEfiVariables = true;
+
+	boot.supportedFilesystems = [ "ntfs" ];
+	fileSystems."/mnt/2TB" = { 
+		device = "/dev/disk/by-label/windows";
+    fsType = "ntfs-3g"; 
+    options = [ "rw" "uid=1000"];
+  };
+
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
 
   # Configure network proxy if necessary
@@ -115,7 +126,10 @@
 			fzf
 			virt-manager
 			nvd
- ];
+			gparted 
+			os-prober
+			grub2
+	];
 	
 	virtualisation.libvirtd.enable = true;
 	programs.dconf.enable = true;

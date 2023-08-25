@@ -9,11 +9,10 @@
 
   home.packages = with pkgs; [
 		firefox
-		chromium
-		brave
     kitty
   	git  
 		fragments	
+		google-chrome
 
 		#fish
 		fish
@@ -76,6 +75,9 @@
   	  uris = ["qemu:///system"];
 	  };
 	};
+
+	#Allow unfree
+	nixpkgs.config.allowUnfreePredicate = _: true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

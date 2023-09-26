@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+	
+boot.initrd.kernelModules = [ "amdgpu" ];
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   
@@ -26,6 +29,55 @@
   };
 
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
+
+	#nvidia
+
+	# Enable opengl
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
+
+# Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["amdgpu"];
+	
+#	hardware.nvidia = {
+
+#    # Modesetting is needed most of the time
+#   modesetting.enable = true;
+
+		# Enable power management (do not disable this unless you have a reason to).
+		# Likely to cause problems on laptops and with screen tearing if disabled.
+#		powerManagement.enable = true;
+
+#    # Use the open source version of the kernel module ("nouveau")
+#		# Note that this offers much lower performance and does not
+#		# support all the latest Nvidia GPU features.
+#		# You most likely don't want this.
+#   # Only available on driver 515.43.04+
+#   open = false;
+
+#    # Enable the Nvidia settings menu,
+#		# accessible via `nvidia-settings`.
+#  #  nvidiaSettings = true;
+
+#    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+#   # package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+
+#		prime = {
+#			
+#			offload = {
+#				enable = true;
+#				enableOffloadCmd = true;
+#			};
+#		
+#			intelBusId = "PCI:0:2:0";
+#			nvidiaBusId = "PCI:1:0:0";	
+#		
+#		};
+#
+#  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -51,12 +103,7 @@
     LC_TELEPHONE = "en_IN";
     LC_TIME = "en_IN";
   };
-  # Enable opengl
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-  };
-
+	
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -97,6 +144,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.openssh = {
+		enable = true;
+	};
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mir = {
     isNormalUser = true;
@@ -125,10 +176,12 @@
 			grc
 			fzf
 			virt-manager
+			mesa-demos
 			nvd
 			gparted 
 			os-prober
 			grub2
+			python3
 	];
 	
 	virtualisation.libvirtd.enable = true;
@@ -141,6 +194,10 @@
 			set tabsize 2
 		'';
 	};
+
+systemd.extraConfig = ''
+  DefaultTimeoutStopSec=10s
+'';
 
 
 

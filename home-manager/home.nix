@@ -13,6 +13,7 @@
   	git  
 		fragments	
 		google-chrome
+		pdfarranger
 
 		#fish
 		fish
@@ -29,6 +30,7 @@
 		fira-code
     fira-code-symbols
     source-code-pro
+
 
 	];
 
@@ -68,6 +70,11 @@
   };
 
 	programs.neovim.enable = true;
+
+	services.kdeconnect = {
+		enable = true;
+		indicator = true;
+	};
 
 	dconf.settings = {
 	  "org/virt-manager/virt-manager/connections" = {

@@ -182,12 +182,14 @@ boot.initrd.kernelModules = [ "amdgpu" ];
 			os-prober
 			grub2
 			python3
+			ngrok
+			mosh
 	];
 	
 	virtualisation.libvirtd.enable = true;
 	programs.dconf.enable = true;
 	programs.fish.enable = true;	
-
+	programs.mosh.enable = true;
 
 	programs.nano = {
 		nanorc = ''

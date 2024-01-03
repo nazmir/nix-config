@@ -10,8 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+	boot.plymouth.enable = true;
 	
-boot.initrd.kernelModules = [ "amdgpu" ];
+	boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -27,6 +28,8 @@ boot.initrd.kernelModules = [ "amdgpu" ];
     fsType = "ntfs-3g"; 
     options = [ "rw" "uid=1000"];
   };
+
+	#config.boot.plymouth.theme = "breeze";
 
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
 
@@ -108,11 +111,11 @@ boot.initrd.kernelModules = [ "amdgpu" ];
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-	services.xserver.displayManager.gdm.enable = true;
+	#services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 	services.xserver.desktopManager.plasma5.enable = true;
 	services.xserver.displayManager.defaultSession = "plasmawayland";
-	#services.xserver.displayManager.sddm.enable = true;
+	services.xserver.displayManager.sddm.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
   # Configure keymap in X11
@@ -187,6 +190,7 @@ boot.initrd.kernelModules = [ "amdgpu" ];
 			python3
 			ngrok
 			mosh
+			plymouth
 	];
 	
 	virtualisation.libvirtd.enable = true;
@@ -200,9 +204,9 @@ boot.initrd.kernelModules = [ "amdgpu" ];
 		'';
 	};
 
-systemd.extraConfig = ''
-  DefaultTimeoutStopSec=10s
-'';
+	systemd.extraConfig = ''
+  	DefaultTimeoutStopSec=10s
+	'';
 
 
 

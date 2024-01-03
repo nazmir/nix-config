@@ -148,6 +148,9 @@ boot.initrd.kernelModules = [ "amdgpu" ];
 		enable = true;
 	};
 
+	#Flatpak
+	services.flatpak.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mir = {
     isNormalUser = true;

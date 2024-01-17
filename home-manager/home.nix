@@ -31,7 +31,7 @@
     fira-code-symbols
     source-code-pro
 
-
+		rustdesk
 	];
 
   home.file = {

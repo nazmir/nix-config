@@ -11,7 +11,8 @@
     ];
 
 	boot.plymouth.enable = true;
-	
+	boot.consoleLogLevel = 0;
+
 	boot.initrd.kernelModules = [ "amdgpu" ];
 
   # Bootloader.
@@ -41,7 +42,7 @@
     driSupport = true;
   };
 
-# Load nvidia driver for Xorg and Wayland
+# Load GPU driver for Xorg and Wayland
   services.xserver.videoDrivers = ["amdgpu"];
 	
 #	hardware.nvidia = {
@@ -116,7 +117,10 @@
 	services.xserver.desktopManager.plasma5.enable = true;
 	services.xserver.displayManager.defaultSession = "plasmawayland";
 	services.xserver.displayManager.sddm.enable = true;
+	services.xserver.displayManager.sddm.autoLogin.relogin = false;
+	services.xserver.displayManager.sddm.autoNumlock = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+	services.xserver.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   services.xserver = {

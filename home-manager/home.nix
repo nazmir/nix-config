@@ -40,7 +40,11 @@
 
   home.sessionVariables = {
     # EDITOR = "emacs";
+<<<<<<< HEAD
 	  MOZ_ENABLE_WAYLAND = 1;
+=======
+	  # MOZ_ENABLE_WAYLAND = 1;
+>>>>>>> master
   };
 
 	programs.kitty = {
@@ -58,6 +62,10 @@
 		enable = true;
 		plugins = [
 	    { name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src; }
+<<<<<<< HEAD
+=======
+			{	name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src; }
+>>>>>>> master
 		];
 	};
 

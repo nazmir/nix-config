@@ -10,14 +10,18 @@
       ./hardware-configuration.nix
     ];
 
+<<<<<<< HEAD
 	boot.plymouth.enable = true;
 	boot.consoleLogLevel = 0;
 
 	boot.initrd.kernelModules = [ "amdgpu" ];
+=======
+>>>>>>> master
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   
+<<<<<<< HEAD
   #boot.loader.grub.enable = true;
   #boot.loader.grub.device = "nodev";
   #boot.loader.grub.useOSProber = true;
@@ -31,11 +35,16 @@
   };
 
 	#config.boot.plymouth.theme = "breeze";
+=======
+	boot.loader.efi.canTouchEfiVariables = true;
+
+>>>>>>> master
 
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
 
 	#nvidia
 
+<<<<<<< HEAD
 	# Enable opengl
   hardware.opengl = {
     enable = true;
@@ -86,6 +95,8 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+=======
+>>>>>>> master
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -113,14 +124,20 @@
 
   # Enable the GNOME Desktop Environment.
 	#services.xserver.displayManager.gdm.enable = true;
+<<<<<<< HEAD
   services.xserver.desktopManager.gnome.enable = true;
+=======
+>>>>>>> master
 	services.xserver.desktopManager.plasma5.enable = true;
 	services.xserver.displayManager.defaultSession = "plasmawayland";
 	services.xserver.displayManager.sddm.enable = true;
 	services.xserver.displayManager.sddm.autoLogin.relogin = false;
 	services.xserver.displayManager.sddm.autoNumlock = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+<<<<<<< HEAD
 	services.xserver.desktopManager.plasma6.enable = true;
+=======
+>>>>>>> master
 
   # Configure keymap in X11
   services.xserver = {
@@ -214,6 +231,7 @@
 
 
 
+<<<<<<< HEAD
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -239,6 +257,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+=======
+>>>>>>> master
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }

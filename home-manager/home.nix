@@ -34,8 +34,7 @@
 		rustdesk
 	];
 
-  home.file = {
-  };
+#  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variables;
 
 
   home.sessionVariables = {
@@ -51,6 +50,9 @@
 		enable = true;
 		userEmail = "mirnaz.hussain@gmail.com";
 		userName = "Naz Mir";
+		extraConfig = {
+			init.defaultBranch = "main";
+		};
 	};
 
 	programs.fish = {

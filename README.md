@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ## Generate SSH keys on new system to clone files from github. Sometimes git is not available on vainlla nixos install, in such cases download the repo and then proceed.
 ssh-keygen -t ed25519 -C "abcdef@gmail.com"
 cat ~/.ssh/id.pub
@@ -28,23 +27,15 @@ sudo ln -s ~/nix-config/nixos/configuration.nix /etc/nixos/configuration.nix
 sudo ln -s ~/nix-config/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
 ```
 
+
+## Update the system
+`nix flake update`
+
+
+## Apply config via flakes
 Run rebuild, switch upgrade to update the packages. Flakes is enabled in configuration.nix
 
 ```
-sudo nixos-rebuild switch --upgrade --flake /home/mir/nix-config/.#mir-nixos-thinkpad
+sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-thinkpad
+home-manager switch --flake mir@mir-nixos-thinkpad #username@hostname
 ```
-=======
-ssh-keygen -t ed25519 -C "abcdef@gmail.com"
-cat ~/.ssh/id.pub
-
-nix-shell -p git
-cd nixos
-cp /etc/nixos/hardware-configuration.nix .
-
-sudo mv configuration.nix configuration.nix.orig
-sudo mv hardware-configuration.nix hardware-configuration.nix.orig
-
-sudo ln -s ~/nix-config/nixos/configuration.nix /etc/nixos/configuration.nix
-sudo ln -s ~/nix-config/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
-
->>>>>>> master

@@ -4,11 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-<<<<<<< HEAD
 		nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
-=======
-	#	nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
->>>>>>> master
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
@@ -22,11 +18,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-<<<<<<< HEAD
-  outputs = { nixpkgs, nixpkgs-plasma6-pre, home-manager, ... }@inputs: {
-=======
   outputs = { nixpkgs, /*nixpkgs-plasma6-pre,*/ home-manager, ... }@inputs: {
->>>>>>> master
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {

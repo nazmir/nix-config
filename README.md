@@ -40,5 +40,5 @@ Run rebuild, switch upgrade to update the packages. Flakes is enabled in configu
 
 ```
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-thinkpad
-home-manager switch --flake mir@mir-nixos-thinkpad #username@hostname
+home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 ```

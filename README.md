@@ -1,6 +1,8 @@
 ## Generate SSH keys on new system to clone files from github. Sometimes git is not available on vainlla nixos install, in such cases download the repo and then proceed.
+```
 ssh-keygen -t ed25519 -C "abcdef@gmail.com"
 cat ~/.ssh/id.pub
+```
 
 ## Add unstable channel and update the channel
 ```

@@ -10,12 +10,12 @@
       ./hardware-configuration.nix
     ];
 
-#	boot.plymouth.enable = true;
-#	boot.consoleLogLevel = 0;
+	boot.plymouth.enable = true;
+	boot.consoleLogLevel = 0;
 
+
+  # Bootloader and AMD boot module
 #	boot.initrd.kernelModules = [ "amdgpu" ];
-
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;  
 	boot.loader.efi.canTouchEfiVariables = true;
 
@@ -28,6 +28,12 @@
 
 
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
+
+
+	hardware.bluetooth = {
+		enable = true;
+		powerOnBoot = true;
+	};
 
 	#nvidia Enable opengl
 #  hardware.opengl = {
@@ -104,8 +110,9 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-	services.xserver.desktopManager.plasma5.enable = true;
-	services.xserver.displayManager.defaultSession = "plasmawayland";
+#	services.xserver.desktopManager.plasma5.enable = true;
+	services.desktopManager.plasma6.enable = true;
+#	services.xserver.displayManager.defaultSession = "plasmawayland";
 	services.xserver.displayManager.sddm.enable = true;
 	services.xserver.displayManager.sddm.autoLogin.relogin = false;
 	services.xserver.displayManager.sddm.autoNumlock = true;

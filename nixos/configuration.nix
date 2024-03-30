@@ -14,8 +14,6 @@
 	boot.consoleLogLevel = 0;
 
 
-  # Bootloader and AMD boot module
-#	boot.initrd.kernelModules = [ "amdgpu" ];
   boot.loader.systemd-boot.enable = true;  
 	boot.loader.efi.canTouchEfiVariables = true;
 
@@ -36,51 +34,52 @@
 	};
 
 	#nvidia Enable opengl
-#  hardware.opengl = {
-#    enable = true;
-#    driSupport = true;
-#  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;  
+	};
 
-# Load GPU driver for Xorg and Wayland
-#  services.xserver.videoDrivers = ["amdgpu"];
-	
-#	hardware.nvidia = {
+# Load AMD driver for Xorg and Wayland
+# Bootloader and AMD boot module
+# boot.initrd.kernelModules = [ "amdgpu" ];
+# services.xserver.videoDrivers = ["amdgpu"];
 
-#    # Modesetting is needed most of the time
-#   modesetting.enable = true;
+# Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+	hardware.nvidia = {
 
-		# Enable power management (do not disable this unless you have a reason to).
-		# Likely to cause problems on laptops and with screen tearing if disabled.
-#		powerManagement.enable = true;
+	# Modesetting is needed most of the time
+  modesetting.enable = true;
 
-#    # Use the open source version of the kernel module ("nouveau")
-#		# Note that this offers much lower performance and does not
-#		# support all the latest Nvidia GPU features.
-#		# You most likely don't want this.
-#   # Only available on driver 515.43.04+
-#   open = false;
+	# Enable power management (do not disable this unless you have a reason to).
+	# Likely to cause problems on laptops and with screen tearing if disabled.
+	powerManagement.enable = true;
 
-#    # Enable the Nvidia settings menu,
-#		# accessible via `nvidia-settings`.
-#  #  nvidiaSettings = true;
+	# Use the open source version of the kernel module ("nouveau")
+	# Note that this offers much lower performance and does not
+	# support all the latest Nvidia GPU features.
+	# You most likely don't want this.
+	# Only available on driver 515.43.04+
+  open = false;
 
-#    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-#   # package = config.boot.kernelPackages.nvidiaPackages.stable;
+	# Enable the Nvidia settings menu, accessible via `nvidia-settings`.
+	nvidiaSettings = true;
+
+	# Optionally, you may need to select the appropriate driver version for your specific GPU.
+	package = config.boot.kernelPackages.nvidiaPackages.stable;
 
 
-#		prime = {
-#			
-#			offload = {
-#				enable = true;
-#				enableOffloadCmd = true;
-#			};
-#		
-#			intelBusId = "PCI:0:2:0";
-#			nvidiaBusId = "PCI:1:0:0";	
-#		
-#		};
-#
-#  };
+	prime = {
+			offload = {
+				enable = true;
+				enableOffloadCmd = true;
+			};
+		
+			intelBusId = "PCI:0:2:0";
+			nvidiaBusId = "PCI:1:0:0";	
+		};
+	};
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

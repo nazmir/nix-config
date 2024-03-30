@@ -183,6 +183,7 @@
 			virt-manager
 			mesa-demos
 			nvd
+			nix-du
 			gparted 
 			os-prober
 			grub2

@@ -11,7 +11,7 @@
     kitty
   	git  
 		fragments	
-		google-chrome
+#		google-chrome
 		pdfarranger
 
 		#fish

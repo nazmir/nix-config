@@ -11,7 +11,7 @@
     kitty
   	git  
 		fragments	
-#		google-chrome
+		google-chrome
 		pdfarranger
 
 		#fish
@@ -30,7 +30,6 @@
     fira-code-symbols
     source-code-pro
 
-		rustdesk
 	];
 
 #  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variables;
@@ -54,10 +53,6 @@
         in listToAttrs [
           (extension "ublock-origin" "uBlock0@raymondhill.net")
 					(extension "1password-x-password-manager" "{d634138d-c276-4fc8-924b-40a0ea21d284}")
-          (extension "tabliss" "extension@tabliss.io")
-#          (extension "umatrix" "uMatrix@raymondhill.net")
-#          (extension "libredirect" "7esoorv3@alefvanoon.anonaddy.me")
-          (extension "clearurls" "{74145f27-f039-47ce-a470-a662b129930a}")
         ];
         # To add additional extensions, find it on addons.mozilla.org, find
         # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)

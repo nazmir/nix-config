@@ -7,7 +7,7 @@
 
 			# Add Modules
 			./common.nix
-#			./nvidia.nix
+			./nvidia.nix
 			./sunshine.nix
     ];
 

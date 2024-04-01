@@ -26,6 +26,8 @@
 
 	# Enable Network Manager
   networking.networkmanager.enable = true;
+	# Firewall
+	networking.firewall.enable = true;
   # Bluetooth
   hardware.bluetooth = {
     enable = true;

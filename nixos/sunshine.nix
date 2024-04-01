@@ -15,6 +15,11 @@
 		KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 
+	services.avahi = {
+		enable = true;
+		publish = { enable = true; };
+	};
+
 	security.wrappers.sunshine = {
 		owner = "root";
 		group = "root";

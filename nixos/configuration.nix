@@ -7,7 +7,8 @@
 
 			# Add Modules
 			./common.nix
-			./nvidia.nix
+			#./nvidia.nix
+			./blacklist_nvidia.nix
 			./sunshine.nix
     ];
 
@@ -15,7 +16,10 @@
   boot.loader.systemd-boot.enable = true;  
 	boot.loader.efi.canTouchEfiVariables = true;
 
-#Mount Windows file system
+	#Boot Options
+	boot.consoleLogLevel = 3;
+	
+	#Mount Windows file system
 	boot.supportedFilesystems = [ "ntfs" ];
 	fileSystems."/mnt/2TB" = { 
 		device = "/dev/disk/by-label/windows";
@@ -30,6 +34,10 @@
 
 # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+	#services.xserver.displayManager.gdm.enable = true;
+	#services.xserver.desktopManager.gnome.enable = true;	
+	
 	services.desktopManager.plasma6.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 

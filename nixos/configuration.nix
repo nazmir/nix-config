@@ -28,7 +28,7 @@
 #	networking.hostName = "mir-nixos-pc"; # Define your hostname.
 #	networking.hostName = "mir-nixos-mbp"; # Define your hostname.
 
-  # Enable the X11 windowing system.
+# Enable the X11 windowing system.
   services.xserver.enable = true;
 	services.desktopManager.plasma6.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";

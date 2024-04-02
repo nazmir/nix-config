@@ -1,6 +1,4 @@
-{config, pkgs, ...}:
-
-{
+{config, pkgs, ...}: {
 
 	boot.kernelModules = [ "uinput" ];
   users.groups.input.members = [ "mir" ];
@@ -11,7 +9,7 @@
   ];
 
   services.udev.extraRules = ''
-		sunshine
+		# Needed for sunshine streaming
 		KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 

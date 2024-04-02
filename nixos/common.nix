@@ -26,14 +26,24 @@
 
 	# Enable Network Manager
   networking.networkmanager.enable = true;
-	# Firewall
-	networking.firewall.enable = true;
+	# Firewall and enable SSH 22 port
+	networking.firewall = {
+     enable = true;
+     # allowedTCPPorts = [ 22 ];
+  };
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
 
+	# Enable OpenSSH
+	services.openssh = {
+		enable = true;
+		settings = {
+			PasswordAuthentication = true;
+		};
+	};
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

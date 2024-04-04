@@ -23,6 +23,7 @@
 				
 		#editors
 		micro
+        nixfmt
 
 		#fonts
     meslo-lgs-nf

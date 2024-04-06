@@ -4,8 +4,8 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-		nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
-
+    nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
+    hyprland.url = "github:hyprwm/Hyprland";
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

@@ -45,3 +45,20 @@ home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 
 ## Fish tide prompt configuration
 `tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time='24-hour format' --rainbow_prompt_separators=Vertical --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Sparse --icons='Many icons' --transient=No`
+  
+## Doom Emacs configuration
+Install Doom Emacs and make sure to run
+`doom doctor` #To check for any issues
+
+Add doom bin to your path 
+
+```
+    interactiveShellInit = ''
+      set -gx PATH ~/.config/emacs/bin $PATH
+    '';
+
+```
+
+Install fonts if `doom doctor` gives any warnings.
+
+Backup original emacs.d directory so that Doom Emacs is picked as default configuration.

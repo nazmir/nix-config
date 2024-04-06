@@ -75,7 +75,7 @@
   users.users.mir = {
     isNormalUser = true;
     description = "Naz Mir";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "systemd-journal"];
     shell = pkgs.fish;
     packages = with pkgs; [
     ];

@@ -8,9 +8,9 @@
       # Add Modules
       ./common.nix
       #./nvidia.nix
-      ./blacklist_nvidia.nix
+      #./blacklist_nvidia.nix
       ./sunshine.nix
-      ./hyprland.nix
+      #./hyprland.nix
     ];
 
   #Boot Loader
@@ -39,17 +39,17 @@
   #Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   services.desktopManager.plasma6.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
-  services.xserver.displayManager.sddm = {
-    enable = true;
-    enableHidpi = true;
-    autoNumlock = true;
-  };
+  # services.xserver.displayManager.sddm = {
+  #   enable = true;
+  #   enableHidpi = true;
+  #   autoNumlock = true;
+  # };
 
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

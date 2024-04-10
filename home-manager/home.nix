@@ -42,6 +42,10 @@
 
     #hyprland
     wofi
+
+    gnome-browser-connector
+    yaru-theme
+    gnome.gnome-tweaks
   ];
 
 #  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variable

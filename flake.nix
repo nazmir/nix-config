@@ -31,7 +31,7 @@
       };
 
       mir-nixos-mbp = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+        system = "aarch64-darwin";
         specialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
         modules = [ ./nixos/configuration.nix ];
@@ -53,11 +53,11 @@
       };
 
       "mir@mir-nixos-mbp" = home-manager.lib.homeManagerConfiguration {
-          #system = "aarch64-linux";
-          pkgs = nixpkgs.legacyPackages."aarch64-linux"; # Home-manager requires 'pkgs' instance
+          #system = "aarch64-darwin";
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin"; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main home-manager configuration file <
-        modules = [ ./home-manager/home.nix ];
+        modules = [ ./home-manager/home-mac.nix ];
       };
     };
   };

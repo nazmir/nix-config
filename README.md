@@ -59,6 +59,20 @@ Add doom bin to your path
 
 ```
 
+## Doom Emacs config
 Install fonts if `doom doctor` gives any warnings.
 
 Backup original emacs.d directory so that Doom Emacs is picked as default configuration.
+
+`Doom configuration lives in ~/.config/doom/*.el`
+
+Copy doom configuration files to ~/.nix-config/.config/doom
+
+```
+mkdir ~/nix-config/.config/doom
+cp ~/.config/doom/* ~/nix-config/.config/doom/
+ln -s  ~/.config/doom/init.el ~/nix-config/.config/doom/init.el
+ln -s  ~/.config/doom/config.el ~/nix-config/.config/doom/config.el
+ln -s  ~/.config/doom/packages.el ~/nix-config/.config/doom/packages.el
+```
+

@@ -74,3 +74,13 @@ ln -s  ~/.config/doom/config.el ~/nix-config/.config/doom/config.el
 ln -s  ~/.config/doom/packages.el ~/nix-config/.config/doom/packages.el
 ```
 
+## Nixos check build difference
+Build the result before switching
+`sudo nixos-rebuild build --flake /home/mir/nix-config/.#mir-nixos-thinkpad` #The result will be in current folder
+
+To compare current system with build result run
+`nvd diff /run/current-system/ ./result/ `
+`nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)` #To compare result after switch
+
+nvd uses nix store diff-closure, but with improved reporting. Syntax for nix store diff-closure is:
+`nix store diff-closures $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)`

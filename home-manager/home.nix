@@ -112,6 +112,8 @@
     '';
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";
+      ll = "ls -al";
+      "..." = "cd ../..";
     };
   };
 

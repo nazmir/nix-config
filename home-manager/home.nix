@@ -90,6 +90,13 @@
   programs.kitty = {
     enable = true;
     theme = "Spacemacs";
+    extraConfig = "
+      remember_window_size yes
+      tab_bar_edge top
+      tab_bar_style fade
+      background_blur 90
+      tab_bar_margin_height 10.0 10.0
+    ";
   };
 
   programs.git = {

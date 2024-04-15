@@ -50,7 +50,7 @@ home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 Install Doom Emacs and make sure to run
 `doom doctor` #To check for any issues
 
-Add doom bin to your path 
+Add doom bin to your fish path 
 
 ```
     interactiveShellInit = ''
@@ -59,10 +59,8 @@ Add doom bin to your path
 
 ```
 
-## Doom Emacs config
-Install fonts if `doom doctor` gives any warnings.
-
-Backup original emacs.d directory so that Doom Emacs is picked as default configuration.
+#### Install fonts if `doom doctor` gives any warnings.
+#### Backup original emacs.d directory so that Doom Emacs is picked as default configuration.
 
 `Doom configuration lives in ~/.config/doom/*.el`
 

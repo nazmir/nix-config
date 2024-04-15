@@ -21,8 +21,6 @@
     fishPlugins.grc
     fishPlugins.colored-man-pages
 
-    #editors
-    micro
 
     #fonts
     meslo-lgs-nf
@@ -44,7 +42,6 @@
     wofi
 
     gnome-browser-connector
-    yaru-theme
     gnome.gnome-tweaks
   ];
 

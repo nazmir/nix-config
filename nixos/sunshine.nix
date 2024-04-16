@@ -33,7 +33,7 @@
 	
 	systemd.user.services.sunshine = {
 		description = "sunshine";
- 		wantedBy = [ "graphical-session.target" ];
+ 		#wantedBy = [ "graphical-session.target" ];
 		enable = true;
 		serviceConfig = {
 			ExecStart = "${config.security.wrapperDir}/sunshine";

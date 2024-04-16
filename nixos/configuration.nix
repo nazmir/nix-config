@@ -15,13 +15,15 @@
 
   #Boot Loader
   boot.loader.systemd-boot.enable = true;  
-  #boot.loader.systemd-boot.consoleMode = "max";
   boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.systemd-boot.consoleMode = "max";
 
   #Boot Options
-  boot.consoleLogLevel = 2;
-  #boot.plymouth.enable = true;
-  #boot.plymouth.theme = "breeze";
+  boot.initrd.verbose = false;
+  boot.kernelParams = [ "quiet" "udev.log_level=0" ];
+  boot.consoleLogLevel = 0;
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze";
 
   #Mount Windows file system
   boot.supportedFilesystems = [ "ntfs" ];

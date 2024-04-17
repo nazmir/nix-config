@@ -33,6 +33,13 @@
     options = [ "rw" "uid=1000"];
   };
 
+ #Mount Data file system
+  fileSystems."/data" = {
+    device = "/dev/disk/by-label/data";
+    fsType = "ext4";
+    options = [ "rw" "users" "nofail" "x-systemd.automount"];
+  };
+
   #Hostname
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.
   #networking.hostName = "mir-nixos-pc"; # Define your hostname.

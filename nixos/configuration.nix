@@ -23,7 +23,7 @@
   boot.kernelParams = [ "quiet" "udev.log_level=0" ];
   boot.consoleLogLevel = 0;
   boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
+  boot.plymouth.theme = "bgrt";
 
   #Mount Windows file system
   boot.supportedFilesystems = [ "ntfs" ];

@@ -76,6 +76,8 @@
     python3
     #plymouth
     killall
+    qjournalctl
+    nh
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

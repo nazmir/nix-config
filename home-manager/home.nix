@@ -49,6 +49,7 @@
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
+    FLAKE = "/home/mir/nix-config/";
   };
 
   programs.firefox = {

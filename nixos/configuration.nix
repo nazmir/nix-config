@@ -7,7 +7,7 @@
 
       # Add Modules
       ./common.nix
-      ./nvidia.nix
+      #./nvidia.nix
       #./blacklist_nvidia.nix
       ./sunshine.nix
       #./hyprland.nix

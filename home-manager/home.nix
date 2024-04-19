@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 
 {
   home.username = "mir";
@@ -13,6 +13,7 @@
     fragments
     google-chrome
     pdfarranger
+    moonlight-qt
 
     #fish
     fish
@@ -20,7 +21,8 @@
     fishPlugins.fzf-fish
     fishPlugins.grc
     fishPlugins.colored-man-pages
-
+    grc
+    fzf
 
     #fonts
     meslo-lgs-nf
@@ -29,8 +31,6 @@
     source-code-pro
     nerdfonts
 
-    moonlight-qt
-
     #emacs
     ripgrep-all
     fd
@@ -38,11 +38,18 @@
     shellcheck
     nixfmt
 
-    #hyprland
-    wofi
-
+    #gnome
     gnome-browser-connector
     gnome.gnome-tweaks
+
+    #sytem utils
+    nh
+    nvd
+    nix-du
+    fastfetch
+    btop
+    htop
+    killall
   ];
 
 #  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variable

@@ -65,19 +65,8 @@
     #wget
     pciutils
     desktop-file-utils
-    neofetch
-    htop
-    grc
-    fzf
     virt-manager
-    nvd
-    nix-du
     gparted
-    python3
-    #plymouth
-    killall
-    qjournalctl
-    nh
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

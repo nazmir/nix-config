@@ -1,7 +1,7 @@
 {config, pkgs, ...}: {
 #nvidia Enable opengl
 
-  boot.kernelParams = [ "module_blacklist=i915" ];
+  #boot.kernelParams = [ "module_blacklist=i915" ];
 
   hardware.opengl = {
     enable = true;
@@ -10,11 +10,14 @@
   };
 
 # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia" "modesetting"];
+  boot.initrd.systemd.enable = true;
+
   hardware.nvidia = {
 
     # Modesetting is needed most of the time
     modesetting.enable = true;
+    nvidiaPersistenced = true;
 
     # Enable power management (do not disable this unless you have a reason to).
     # Likely to cause problems on laptops and with screen tearing if disabled.
@@ -44,47 +47,47 @@
     };
   };
 
-  specialisation = {
-    nvidiaBeta.configuration = {
-      hardware.nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.beta;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        powerManagement.finegrained = false;
-        open = false;
-        nvidiaSettings = true;
-        prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
-          # sync.enable = true;
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
-        };
-      };
-      environment.etc."specialisation".text = "nvidiaBeta";
-    };
+  # specialisation = {
+  #   nvidiaBeta.configuration = {
+  #     hardware.nvidia = {
+  #       package = config.boot.kernelPackages.nvidiaPackages.beta;
+  #       modesetting.enable = true;
+  #       powerManagement.enable = true;
+  #       powerManagement.finegrained = false;
+  #       open = false;
+  #       nvidiaSettings = true;
+  #       prime = {
+  #         offload = {
+  #           enable = true;
+  #           enableOffloadCmd = true;
+  #         };
+  #         # sync.enable = true;
+  #         intelBusId = "PCI:0:2:0";
+  #         nvidiaBusId = "PCI:1:0:0";
+  #       };
+  #     };
+  #     environment.etc."specialisation".text = "nvidiaBeta";
+  #   };
 
-    nvidiaStable.configuration = {
-      hardware.nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        powerManagement.finegrained = false;
-        open = false;
-        nvidiaSettings = true;
-        prime = {
-          offload = {
-            enable = true;
-            enableOffloadCmd = true;
-          };
-          # sync.enable = true;
-          intelBusId = "PCI:0:2:0";
-          nvidiaBusId = "PCI:1:0:0";
-        };
-      };
-      environment.etc."specialisation".text = "nvidiaStable";
-    };
-  };
+  #   nvidiaStable.configuration = {
+  #     hardware.nvidia = {
+  #       package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #       modesetting.enable = true;
+  #       powerManagement.enable = true;
+  #       powerManagement.finegrained = false;
+  #       open = false;
+  #       nvidiaSettings = true;
+  #       prime = {
+  #         offload = {
+  #           enable = true;
+  #           enableOffloadCmd = true;
+  #         };
+  #         # sync.enable = true;
+  #         intelBusId = "PCI:0:2:0";
+  #         nvidiaBusId = "PCI:1:0:0";
+  #       };
+  #     };
+  #     environment.etc."specialisation".text = "nvidiaStable";
+  #   };
+  # };
 }

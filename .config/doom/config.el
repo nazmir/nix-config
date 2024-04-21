@@ -44,6 +44,8 @@
 
 (setq shell-file-name (executable-find "bash"))
 
+ (setq doom-font (font-spec :size 32 ))
+
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
 ;;

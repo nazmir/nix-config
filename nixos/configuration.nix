@@ -7,7 +7,7 @@
 
       # Add Modules
       ./common.nix
-      #./nvidia.nix
+      ./nvidia.nix
       #./blacklist_nvidia.nix
       ./sunshine.nix
       #./hyprland.nix
@@ -19,9 +19,9 @@
   #boot.loader.systemd-boot.consoleMode = "max";
 
   #Boot Options
-  boot.initrd.verbose = false;
-  boot.kernelParams = [ "quiet" "udev.log_level=0" ];
-  boot.consoleLogLevel = 0;
+  boot.initrd.verbose = true;
+  #boot.kernelParams = [ "quiet" "udev.log_level=0" ];
+  boot.consoleLogLevel = 3;
   boot.plymouth.enable = true;
   boot.plymouth.theme = "bgrt";
 

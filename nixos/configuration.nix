@@ -7,8 +7,8 @@
 
       # Add Modules
       ./common.nix
-      ./nvidia.nix
-      #./blacklist_nvidia.nix
+      #./nvidia.nix
+      ./blacklist_nvidia.nix
       ./sunshine.nix
       #./hyprland.nix
     ];
@@ -20,10 +20,10 @@
 
   #Boot Options
   boot.initrd.verbose = true;
-  #boot.kernelParams = [ "quiet" "udev.log_level=0" ];
-  boot.consoleLogLevel = 3;
+  boot.kernelParams = [ "quiet" "udev.log_level=0" ];
+  boot.consoleLogLevel = 0;
   boot.plymouth.enable = true;
-  boot.plymouth.theme = "bgrt";
+  boot.plymouth.theme = "breeze";
 
   #Mount Windows file system
   boot.supportedFilesystems = [ "ntfs" ];
@@ -37,7 +37,7 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-label/data";
     fsType = "ext4";
-    options = [ "rw" "users" "nofail" "x-systemd.automount"];
+    options = [ "rw" "users" "nofail" "auto"];
   };
 
   #Hostname
@@ -49,11 +49,12 @@
   services.xserver.enable = true;
 
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.autoLogin.enable = true;
+  services.xserver.displayManager.autoLogin.user = "mir";
 
   services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-
   # services.xserver.displayManager.sddm = {
   #   enable = true;
   #   enableHidpi = true;

@@ -30,7 +30,7 @@
     fira-code-symbols
     source-code-pro
     terminus-nerdfont
-
+    nerdfonts
     #emacs
     ripgrep-all
     fd

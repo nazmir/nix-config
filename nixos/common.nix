@@ -14,7 +14,10 @@
 
 	# Enable Network Manager
   networking.networkmanager.enable = true;
-	# Firewall and enable SSH 22 port
+  #This is needed in case of for example servers that rely on network resources as part of the boot process
+  systemd.services.NetworkManager-wait-online.enable = false;
+
+  # Firewall and enable SSH 22 port
 	networking.firewall = {
      enable = true;
      # allowedTCPPorts = [ 22 ];

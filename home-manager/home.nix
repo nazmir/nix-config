@@ -29,7 +29,7 @@
     fira-code
     fira-code-symbols
     source-code-pro
-    nerdfonts
+    terminus-nerdfont
 
     #emacs
     ripgrep-all
@@ -50,6 +50,15 @@
     btop
     htop
     killall
+
+    #Haskell
+    haskell-language-server
+    haskellPackages.hoogle
+    haskellPackages.cabal-install
+
+    #Python
+    python3
+    isort
   ];
 
 #  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variable

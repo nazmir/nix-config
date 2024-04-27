@@ -19,7 +19,7 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $NIX_CONFIG_HOME $HOME/nix-config
-set $term /usr/bin/kitty --single-instance
+set $term kitty --single-instance
 set $gnome-schema org.gnome.desktop.interface
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened

@@ -81,3 +81,4 @@
 (defun connect-mir-arch-vm ()
   (interactive)
   (dired "/ssh:mir@192.168.122.6:/home/mir"))
+

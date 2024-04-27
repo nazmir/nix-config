@@ -68,6 +68,7 @@
     desktop-file-utils
     virt-manager
     gparted
+    sway
   ];
 
   system.stateVersion = "23.05"; # Did you read the comment?

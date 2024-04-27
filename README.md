@@ -84,3 +84,10 @@ To compare current system with build result run
 
 nvd uses nix store diff-closure, but with improved reporting. Syntax for nix store diff-closure is:
 `nix store diff-closures $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)`
+
+
+## sway config
+```
+mkdir ~/.config/sway
+ln -s ~/nix-config/.config/sway/config ~/.config/sway/config
+```

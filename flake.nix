@@ -49,6 +49,7 @@
         # > Our main home-manager configuration file <
         modules = [ 
           ./home-manager/home.nix
+          ./home-manager/sway.nix
         ];
       };
 

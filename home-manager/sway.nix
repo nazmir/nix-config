@@ -3,10 +3,9 @@
 {
 
     home.packages = with pkgs; [
-        #sway
+        sway
         jq
         waybar
-        blueman
         brightnessctl
         dmenu
         light
@@ -24,5 +23,10 @@
         wofi
         papirus-icon-theme
         arc-theme
+        sway-launcher-desktop
+        xdg-desktop-portal-wlr
+        slurp
+        seatd
+        grim
     ];
 }

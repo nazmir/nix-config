@@ -115,7 +115,7 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Solarized Dark - Patched";
+    theme = "Spacemacs";
     extraConfig = "
       remember_window_size yes
       tab_bar_edge top

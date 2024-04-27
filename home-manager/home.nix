@@ -14,6 +14,7 @@
     google-chrome
     pdfarranger
     moonlight-qt
+    fractal
 
     #fish
     fish
@@ -59,6 +60,14 @@
     #Python
     python3
     isort
+
+    #Clojure
+    clojure
+    clj-kondo
+
+    #LISP
+    sbcl
+
   ];
 
 #  home.file.".config/fish/fish_variables".source = ./dotfiles/fish_variable
@@ -106,7 +115,7 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Spacemacs";
+    theme = "Solarized Dark - Patched";
     extraConfig = "
       remember_window_size yes
       tab_bar_edge top
@@ -154,6 +163,7 @@
     ];
     interactiveShellInit = ''
       set -gx PATH ~/.config/emacs/bin $PATH
+      fastfetch
     '';
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";

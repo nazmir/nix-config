@@ -33,7 +33,7 @@
     terminus-nerdfont
     nerdfonts
     #emacs
-    ripgrep-all
+    ripgrep
     fd
     pandoc
     shellcheck
@@ -64,6 +64,7 @@
     #Clojure
     clojure
     clj-kondo
+    leiningen
 
     #LISP
     sbcl

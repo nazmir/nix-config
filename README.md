@@ -69,9 +69,9 @@ Copy doom configuration files to ~/.nix-config/.config/doom
 ```
 mkdir ~/nix-config/.config/doom
 cp ~/.config/doom/* ~/nix-config/.config/doom/
-ln -s  ~/.config/doom/init.el ~/nix-config/.config/doom/init.el
-ln -s  ~/.config/doom/config.el ~/nix-config/.config/doom/config.el
-ln -s  ~/.config/doom/packages.el ~/nix-config/.config/doom/packages.el
+ln -s  ~/nix-config/.config/doom/init.el ~/.config/doom/init.el
+ln -s  ~/nix-config/.config/doom/config.el ~/.config/doom/config.el
+ln -s  ~/nix-config/.config/doom/packages.el ~/.config/doom/packages.el
 ```
 
 ## Nixos check build difference

@@ -4,8 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
-    hyprland.url = "github:hyprwm/Hyprland";
+    nix-gl-host.url = "github:numtide/nix-gl-host";
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +17,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, /*nixpkgs-plasma6-pre,*/ home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, nix-gl-host, ... }@inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -28,6 +27,13 @@
         specialArgs = { inherit inputs; }; # Pass flake inputs to our config
         # > Our main nixos configuration file <
         modules = [ ./nixos/configuration.nix ];
+      };
+
+      mir-popos-thinkpad = {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main nixos configuration file <
+        modules = [ ./nixos/configuration-popos.nix ];
       };
 
       mir-nixos-mbp = nixpkgs.lib.nixosSystem {
@@ -52,6 +58,17 @@
           #./home-manager/sway.nix
         ];
       };
+
+       "mir@mir-popos-thinkpad" = home-manager.lib.homeManagerConfiguration {
+        #system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+        # > Our main home-manager configuration file <
+        modules = [ 
+          ./home-manager/home-popos.nix
+        ];
+      };
+
 
       "mir@mir-nixos-mbp" = home-manager.lib.homeManagerConfiguration {
           #system = "aarch64-darwin";

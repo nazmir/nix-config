@@ -43,6 +43,7 @@
     btop
     htop
     killall
+    tldr
 
     #Haskell
     haskell-language-server

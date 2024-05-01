@@ -106,9 +106,7 @@
       {   name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src; }
     ];
     interactiveShellInit = ''
-      set -gx PATH ~/.config/emacs/bin $PATH
       fastfetch
-      set --global --export FONTCONFIG_FILE ${pkgs.fontconfig.out}/etc/fonts/fonts.conf
     '';
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";

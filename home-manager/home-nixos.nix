@@ -3,6 +3,7 @@
 {
   imports = [
       ./common.nix
+      ./services.nix
       #./sway.nix
   ];
 

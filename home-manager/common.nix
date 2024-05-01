@@ -92,11 +92,6 @@
     '';
   };
 
-  services.emacs = {
-    enable = true;
-    startWithUserSession = "graphical";
-  };
-
   programs.neovim.enable = true;
   
   programs.bash = {
@@ -119,13 +114,6 @@
       #emacs = "~/.config/emacs/bin/doom run";
       ll = "ls -al";
       "..." = "cd ../..";
-    };
-  };
-
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
     };
   };
 

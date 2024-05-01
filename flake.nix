@@ -17,7 +17,7 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, home-manager, nix-gl-host, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
 
       mir-nixos-thinkpad = nixpkgs.lib.nixosSystem {

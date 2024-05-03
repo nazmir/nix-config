@@ -8,7 +8,6 @@
   ];
 
   home.packages = with pkgs; [
-    kitty
     pdfarranger
     moonlight-qt
     gparted

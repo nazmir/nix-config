@@ -13,11 +13,6 @@
     kitty
 
     #fish
-    fish
-    fishPlugins.tide
-    fishPlugins.fzf-fish
-    fishPlugins.grc
-    fishPlugins.colored-man-pages
     grc
     fzf
 
@@ -70,6 +65,8 @@
     FLAKE = "/home/$USER/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "/home/$USER/nix-config";
+    NIXPKGS_ALLOW_UNFREE=1;
+    MOZ_USE_XINPUT2=1;
   };
 
   home.sessionPath = [
@@ -102,10 +99,13 @@
   };
 
   programs.fish = {
-    enable = true;
+   enable = true;
     plugins = [
-      { name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src; }
-      {   name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src; }
+      {name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src;}
+      {name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src;}
+      {name = "fishPlugins.fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src;}
+      {name = "fishPlugins.colored-man-pages"; src= pkgs.fishPlugins.colored-man-pages.src;}
+
     ];
     interactiveShellInit = ''
       fastfetch

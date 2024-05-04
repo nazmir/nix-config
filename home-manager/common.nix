@@ -9,8 +9,6 @@
 
   home.packages = with pkgs; [
     git
-    virt-manager
-    kitty
 
     #fish
     grc

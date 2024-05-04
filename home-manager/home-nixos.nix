@@ -13,8 +13,10 @@
     gparted
     fractal
     fragments
+    virt-manager
+    kitty
 
-   #gnome
+    #gnome
     gnome-browser-connector
     gnome.gnome-tweaks
 

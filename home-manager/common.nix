@@ -9,6 +9,8 @@
 
   home.packages = with pkgs; [
     git
+    okular
+    xournalpp
 
     #fish
     grc
@@ -56,6 +58,7 @@
     #LISP
     sbcl
 
+    emacs-all-the-icons-fonts
   ];
 
 

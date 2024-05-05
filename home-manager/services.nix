@@ -11,6 +11,8 @@
   services.emacs = {
     enable = true;
     startWithUserSession = "graphical";
+    socketActivation.enable = true;
+    defaultEditor = true;
   };
 
 

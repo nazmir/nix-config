@@ -91,3 +91,12 @@ nvd uses nix store diff-closure, but with improved reporting. Syntax for nix sto
 mkdir ~/.config/sway
 ln -s ~/nix-config/.config/sway/config ~/.config/sway/config
 ```
+## Kitty configuration
+
+```
+mv kitty.conf kitty.conf.orig
+mv current-theme.conf current-theme.conf.orig
+ln -s ~/nix-config/.config/kitty/kitty.conf kitty.conf
+ln -s ~/nix-config/.config/kitty/current-theme.conf current-theme.conf
+
+```

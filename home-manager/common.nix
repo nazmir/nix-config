@@ -9,8 +9,8 @@
 
   home.packages = with pkgs; [
     git
-    okular
-    xournalpp
+    #okular
+    #xournalpp
 
     #fish
     grc

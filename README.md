@@ -5,20 +5,20 @@ ssh-keygen -t ed25519 -C "abcdef@gmail.com"
 cat ~/.ssh/id.pub
 ```
 
-## Add unstable channel and update the channel
-```
-nix-channel --list
-nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-nix-channel --update
+## Enable / Install nix command
+Install nix from *determinate systems for non nixos** systems. In case of Nixos enable experimental features - this should already be enabled in configuration.nix
+
+On nixos systems to permanently enable add the following to configuration.nix
+
+``` nix
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ```
 
-## Install Home Manager system wide, use the unstable channel
 
-Sometimes home manager might not be available after installation, logout and login should make it available.
-```
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-nix-channel --update
-nix-shell '<home-manager>' -A install
+## Install Home manager as a standalone using flakes
+
+``` nix
+nix run home-manager/master -- init --switch ~/nix-config/home/
 ```
 
 ## Backup the original configuration files and link to git configuration files
@@ -35,29 +35,15 @@ sudo ln -s ~/nix-config/nixos/hardware-configuration.nix /etc/nixos/hardware-con
 `nix flake update`
 
 
-## Apply config via flakes
-Run rebuild, switch upgrade to update the packages. Flakes is enabled in configuration.nix
-
+## Apply config via flakes in case *`nh`* helper is not installed
 ```
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-thinkpad
 home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 ```
-
-## Fish tide prompt configuration
-`tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time='24-hour format' --rainbow_prompt_separators=Vertical --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Sparse --icons='Many icons' --transient=No`
-  
+ 
 ## Doom Emacs configuration
 Install Doom Emacs and make sure to run
 `doom doctor` #To check for any issues
-
-Add doom bin to your fish path 
-
-```
-    interactiveShellInit = ''
-      set -gx PATH ~/.config/emacs/bin $PATH
-    '';
-
-```
 
 #### Install fonts if `doom doctor` gives any warnings.
 #### Backup original emacs.d directory so that Doom Emacs is picked as default configuration.

@@ -1,8 +1,13 @@
 ## Generate SSH keys on new system to clone files from github. 
-Sometimes git is not available on vainlla nixos install, in such cases download the repo and then proceed.
 ```sh
 ssh-keygen -t ed25519 -C "abcdef@gmail.com"
 cat ~/.ssh/id.pub
+```
+
+## Install git if not available and clone the repo
+
+``` nix
+nix run nixpkgs#git -- clone git@github.com:nazmir/nix-config.git
 ```
 
 ## Enable / Install nix command
@@ -23,19 +28,69 @@ nix run home-manager/master -- init --switch ~/nix-config/home/
 
 ## Backup the original configuration files and link to git configuration files
 ```sh
-sudo mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.orig
-sudo mv /etc/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix.orig
-
-sudo ln -s ~/nix-config/nixos/configuration.nix /etc/nixos/configuration.nix
-sudo ln -s ~/nix-config/nixos/hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+sudo ~/nix-config/bin/rename-and-link /etc/nixos/ ~/nix-config/nixos/
 ```
 
 
-## Update the system
+## Doom Emacs configuration
+Install Doom Emacs and make sure to run  
+`doom doctor` #To check for any issues
+
+Backup ~/.emacs.d if it exists  
+
+``` sh
+mv ~/.emacs.d ~/.emacs.d.orig
+```
+
+Copy doom configuration files to ~/.nix-config/.config/doom  
+
+```sh
+~/nix-config/bin/rename-and-link.sh ~/.config/doom/ ~/nix-config/.config/doom
+```
+
+## sway config
+```sh
+~/nix-config/bin/rename-and-link ~/.config/sway/config ~/.config/sway/config
+```
+## Kitty configuration
+
+```sh
+~/nix-config/bin/rename-and-link ~/.config/kitty/ ~/nix-config/.config/kitty 
+#The result will be in current folder
+```
+
+
+## To update the system
 ```nix 
 nix flake update
 ```
 
+## Using *`nh`* helper to rebuild system or home manager
+
+``` nix
+nh os switch --ask #Ask for confirmation before applying configuration
+nh home switch --ask
+
+#To specify flakes explicitly use:
+nh os switch --ask ~/nix-config/.#mir-nixos-thinkpad
+
+#To use the current hostname and specify flake path reference use:
+nh os switch --ask ~/nix-config/ 
+```
+
+## Garbage collection using *`nh`* helper
+
+``` nix
+nh clean all #Clean OS and Home profiles
+nh clean user #clean user profiles
+```
+
+## Cleaning specific profiles 
+
+``` nix
+nix profile list
+nh clean profile -a nixGL #nixGL is profile name and -a asks for confirmation
+```
 
 ## Apply config via flakes in case *`nh`* helper is not installed
 ```nix
@@ -43,50 +98,19 @@ sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-thinkpad
 home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 ```
  
-## Doom Emacs configuration
-Install Doom Emacs and make sure to run
-`doom doctor` #To check for any issues
+## Nixos check build difference if *`nh`* helper is not installed
+Build the result before switching  
+```sh 
+sudo nixos-rebuild build --flake /home/mir/nix-config/.#mir-nixos-thinkpad 
+``` 
 
-#### Install fonts if `doom doctor` gives any warnings.
-#### Backup original emacs.d directory so that Doom Emacs is picked as default configuration.
-
-`Doom configuration lives in ~/.config/doom/*.el`
-
-Copy doom configuration files to ~/.nix-config/.config/doom
-
-```sh
-mkdir ~/nix-config/.config/doom
-cp ~/.config/doom/* ~/nix-config/.config/doom/
-ln -s  ~/nix-config/.config/doom/init.el ~/.config/doom/init.el
-ln -s  ~/nix-config/.config/doom/config.el ~/.config/doom/config.el
-ln -s  ~/nix-config/.config/doom/packages.el ~/.config/doom/packages.el
-```
-
-## Nixos check build difference
-Build the result before switching
-`sudo nixos-rebuild build --flake /home/mir/nix-config/.#mir-nixos-thinkpad` #The result will be in current folder
-
-To compare current system with build result run
+To compare current system with build result run  
 ```nix 
 nvd diff /run/current-system/ ./result/ 
 nvd diff $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2) #To compare result after switch
 ```
 
-nvd uses nix store diff-closure, but with improved reporting. Syntax for nix store diff-closure is:
-`nix store diff-closures $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)`
-
-
-## sway config
-```sh
-mkdir ~/.config/sway
-ln -s ~/nix-config/.config/sway/config ~/.config/sway/config
-```
-## Kitty configuration
-
-```sh
-mv kitty.conf kitty.conf.orig
-mv current-theme.conf current-theme.conf.orig
-ln -s ~/nix-config/.config/kitty/kitty.conf kitty.conf
-ln -s ~/nix-config/.config/kitty/current-theme.conf current-theme.conf
-
+nvd uses nix store diff-closure, but with improved reporting. Syntax for nix store diff-closure is:  
+```nix 
+nix store diff-closures $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)
 ```

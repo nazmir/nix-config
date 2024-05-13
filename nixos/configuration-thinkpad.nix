@@ -2,6 +2,7 @@
 {
 
   imports = [
+    ./hardware-configuration-thinkpad.nix
     ./default.nix
     #./nvidia.nix
     ./blacklist_nvidia.nix

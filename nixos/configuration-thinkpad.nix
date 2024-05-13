@@ -2,7 +2,7 @@
 {
 
   imports = [
-
+    ./default.nix
     #./nvidia.nix
     ./blacklist_nvidia.nix
   ];

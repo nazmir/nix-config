@@ -3,8 +3,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-
       # Add Modules
       ./sunshine.nix
       #./hyprland.nix

@@ -31,27 +31,28 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
-          modules = [ ./nixos/configuration.nix ];
+          modules = [ ./nixos/configuration-thinkpad.nix ];
         };
 
-        mir-popos-thinkpad = {
+        mir-nixos-pc = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
-          modules = [ ./nixos/configuration-popos.nix ];
-        };
-
-        mir-nixos-mbp = nixpkgs.lib.nixosSystem {
-          system = "aarch64-darwin";
-          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          # > Our main nixos configuration file <
-          modules = [ ./nixos/configuration.nix ];
+          modules = [ ./nixos/configuration-pc.nix ];
         };
 
       };
 
       homeConfigurations = {
-        "mir@mir-nixos-thinkpad" = home-manager.lib.homeManagerConfiguration {
+        "mir@mir-nixos-thinkpad"  = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules = [
+            ./home-manager/home-nixos.nix
+          ];
+        };
+
+        "mir@mir-nixos-pc"  = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules = [

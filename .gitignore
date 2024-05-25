@@ -2,3 +2,5 @@
 *.save
 .DS_Store
 result
+*.bak
+hardware-configuration.nix

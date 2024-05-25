@@ -4,11 +4,13 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-plasma6-pre.url = "github:nix-community/kde2nix";
-    hyprland.url = "github:hyprwm/Hyprland";
+
     # Home manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixgl.url = "github:nix-community/nixGL";
+    nixgl.inputs.nixpkgs.follows = "nixpkgs";
 
     # TODO: Add any other flake you might need
     # hardware.url = "github:nixos/nixos-hardware";
@@ -18,48 +20,61 @@
     # nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { nixpkgs, /*nixpkgs-plasma6-pre,*/ home-manager, ... }@inputs: {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      # FIXME replace with your hostname
-      mir-nixos-thinkpad = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main nixos configuration file <
-        modules = [ ./nixos/configuration.nix ];
+  outputs = { nixpkgs, home-manager, nixgl, ... }@inputs:
+
+    {
+
+
+      nixosConfigurations = {
+
+        mir-nixos-thinkpad = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          # > Our main nixos configuration file <
+          modules = [ ./nixos/configuration-thinkpad.nix ];
+        };
+
+        mir-nixos-pc = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          # > Our main nixos configuration file <
+          modules = [ ./nixos/configuration-pc.nix ];
+        };
+
       };
 
-      mir-nixos-mbp = nixpkgs.lib.nixosSystem {
-        system = "aarch64-darwin";
-        specialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main nixos configuration file <
-        modules = [ ./nixos/configuration.nix ];
-      };
+      homeConfigurations = {
+        "mir@mir-nixos-thinkpad"  = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules = [
+            ./home-manager/home-nixos.nix
+          ];
+        };
 
-    };
+        "mir@mir-nixos-pc"  = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules = [
+            ./home-manager/home-nixos.nix
+          ];
+        };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "mir@mir-nixos-thinkpad" = home-manager.lib.homeManagerConfiguration {
-        #system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main home-manager configuration file <
-        modules = [ 
-          ./home-manager/home.nix
-          #./home-manager/sway.nix
-        ];
-      };
+        "mir@mir-popos-thinkpad" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules = [
+            ./home-manager/home-popos.nix
+          ];
+        };
 
-      "mir@mir-nixos-mbp" = home-manager.lib.homeManagerConfiguration {
-          #system = "aarch64-darwin";
+
+        "mir@mir-nixos-mbp" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-darwin"; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-        # > Our main home-manager configuration file <
-        modules = [ ./home-manager/home-mac.nix ];
+          extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
+          modules = [ ./home-manager/home-mac.nix ];
+        };
+
       };
     };
-  };
 }

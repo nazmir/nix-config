@@ -81,6 +81,8 @@
     userName = "Naz Mir";
     extraConfig = {
       init.defaultBranch = "main";
+      pull.rebase = true;
+      push.default = "simple";
     };
   };
 

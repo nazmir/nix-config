@@ -73,6 +73,7 @@
   home.sessionPath = [
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
+    "/usr/local/go/bin"
   ];
 
   programs.git = {

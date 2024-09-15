@@ -4,11 +4,20 @@ ssh-keygen -t ed25519 -C "abcdef@gmail.com"
 cat ~/.ssh/id.pub
 ```
 
-## Install git if not available and clone the repo
-
-``` nix
-nix run nixpkgs#git -- clone git@github.com:nazmir/nix-config.git
+## Rename the configuration and hardware config files as per the host name e.g.
+```sh
+sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
+sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix
 ```
+
+## For the first build run nixos rebuild traditionally without flakes
+```sh
+sudo nixos rebuild switch
+# After the first run you can use flakes like this
+sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
+```
+
+
 
 ## Enable / Install nix command
 Install nix from *determinate systems for non nixos* systems. In case of Nixos enable experimental features - this should already be enabled in configuration.nix
@@ -25,12 +34,6 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 ``` nix
 nix run home-manager/master -- init --switch ~/nix-config/home/
 ```
-
-## Backup the original configuration files and link to git configuration files
-```sh
-sudo ~/nix-config/bin/rename-and-link /etc/nixos/ ~/nix-config/nixos/
-```
-
 
 ## Doom Emacs configuration
 Install Doom Emacs and make sure to run  

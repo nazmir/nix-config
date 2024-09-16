@@ -3,22 +3,11 @@
 {
   imports = [
       ./common.nix
-      ./services.nix
-      #./sway.nix
   ];
 
   home.packages = with pkgs; [
-    pdfarranger
-    moonlight-qt
     gparted
-    fractal
-    fragments
-    virt-manager
     kitty
-
-    #gnome
-    gnome-browser-connector
-    gnome-tweaks
 
   ];
 

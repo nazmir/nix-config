@@ -41,23 +41,6 @@
     killall
     tldr
 
-    #Haskell
-    haskell-language-server
-    haskellPackages.hoogle
-    haskellPackages.cabal-install
-
-    #Python
-    python3
-    isort
-
-    #Clojure
-    clojure
-    clj-kondo
-    leiningen
-
-    #LISP
-    sbcl
-
     emacs-all-the-icons-fonts
   ];
 
@@ -87,13 +70,6 @@
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-gtk;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
-    extraConfig = ''
-      (setq standard-indent 2)
-    '';
-  };
 
   programs.neovim.enable = true;
   

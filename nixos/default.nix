@@ -38,6 +38,8 @@
     desktop-file-utils
     virt-manager
     gparted
+    git
+    firefox
   ];
 
  # Set your time zone.

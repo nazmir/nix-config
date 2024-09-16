@@ -23,12 +23,11 @@
   #Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "mir";
+  services.displayManager.autoLogin.user = "mir";
 
   services.desktopManager.plasma6.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
   environment.systemPackages = with pkgs; [

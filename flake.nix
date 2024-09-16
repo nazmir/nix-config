@@ -84,7 +84,7 @@
         "mir@mir-nixos-armvm" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          modules = [ ./home-manager/home-nixos.nix ];
+          modules = [ ./home-manager/home-armvm.nix ];
         };
 
 

@@ -95,7 +95,12 @@
 
  # Allow unfree packages and nix flakes
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
 
  #Flatpak, fish and other customization

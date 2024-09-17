@@ -16,11 +16,13 @@ Use the existing confifuration files or create new ones as needed.
 ## Link the newly renamed configuration files to the nix-config directory
 The script will backup the files in source directory (arg1) and link to target directory.
 ```sh
-cp /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix #there is no hardware config in git for the first time
+cp /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix 
 git add  ~/nix-config/nixos/hardware-configuration-armvm.nix
 
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
+  
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix
+  
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-armvm
 ```
 
@@ -30,9 +32,14 @@ Before installing home manager run nix flake update and then link the config fil
 ``` nix
 cd ~/nix-config
 nix flake update
-nix run home-manager/master -- init #this will initialize home manager and place config file in ~/.config/home-manager/home.nix
-~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/home-armvm.nix
-home-manager switch --flake /home/mir/nix-config/home-manager/.#mir@mir-nixos-thinkpad #initial evaluation with flakes
+
+#this will initialize home manager and place config file in ~/.config/home-manager/home.nix 
+nix run home-manager/master -- init --switch  
+  
+~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/home-armvm.nix  
+  
+#initial evaluation with flakes  
+home-manager switch --flake /home/mir/nix-config/home-manager/.#mir@mir-nixos-thinkpad 
 ```
 
 ## To update the system

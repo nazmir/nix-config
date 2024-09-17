@@ -7,7 +7,7 @@ Add the key to git repo.
 
 ## Clone the git repository 
 ```sh
-nix run --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git clone git clone git@github.com:nazmir/nix-config.git
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git clone git@github.com:nazmir/nix-config.git
 ```
 
 ## For the first build run nixos rebuild traditionally without flakes

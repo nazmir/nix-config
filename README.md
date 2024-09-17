@@ -31,7 +31,7 @@ Before installing home manager run nix flake update and then link the config fil
 cd ~/nix-config
 nix flake update
 nix run home-manager/master -- init #this will initialize home manager and place config file in ~/.config/home-manager/home.nix
-~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home/home-armvm.nix
+~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/home-armvm.nix
 home-manager switch --flake /home/mir/nix-config/home-manager/.#mir@mir-nixos-thinkpad #initial evaluation with flakes
 ```
 

@@ -1,67 +1,45 @@
 ## Generate SSH keys on new system to clone files from github. 
 ```sh
 ssh-keygen -t ed25519 -C "abcdef@gmail.com"
-cat ~/.ssh/id.pub
+cat ~/.ssh/id_ed25519.pub
+```
+Add the key to git repo.
+
+## For the first build run nixos rebuild traditionally without flakes
+This will install git for further configuration
+```sh
+sudo nixos rebuild switch #this will setup flakes
 ```
 
-## Rename the configuration and hardware config files as per the host name e.g.
+## Create Machine specific and architecture-specific configuration files if needed.
+Use the existing confifuration files or create new ones as needed.
+
+## Clone the git repository 
+```sh
+git clone git@github.com:nazmir/nix-config.git
+```
+
+## Link the newly renamed configuration files to the nix-config directory
+The script will backup the files in source directory (arg1) and link to target directory.
 ```sh
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix
+sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-armvm
 ```
-
-## For the first build run nixos rebuild traditionally without flakes
-```sh
-sudo nixos rebuild switch
-# After the first run you can use flakes like this
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
-```
-
-
 
 ## Enable / Install nix command
 Install nix from *determinate systems for non nixos* systems. In case of Nixos enable experimental features - this should already be enabled in configuration.nix
 
-On nixos systems to permanently enable add the following to configuration.nix
-
-``` nix
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
-```
-
-
 ## Install Home manager as a standalone using flakes
+Before installing home manager run nix flake update and then link the config file to git repo
 
 ``` nix
-nix run home-manager/master -- init --switch ~/nix-config/home/
+cd ~/nix-config
+nix flake update
+nix run home-manager/master -- init --switch #this will initialize home manager and place config file in ~/.config/home-manager/home.nix
+~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home/home-armvm.nix
+home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad #initial evaluation with flakes
 ```
-
-## Doom Emacs configuration
-Install Doom Emacs and make sure to run  
-`doom doctor` #To check for any issues
-
-Backup ~/.emacs.d if it exists  
-
-``` sh
-mv ~/.emacs.d ~/.emacs.d.orig
-```
-
-Copy doom configuration files to ~/.nix-config/.config/doom  
-
-```sh
-~/nix-config/bin/rename-and-link.sh ~/.config/doom/ ~/nix-config/.config/doom
-```
-
-## sway config
-```sh
-~/nix-config/bin/rename-and-link ~/.config/sway/config ~/.config/sway/config
-```
-## Kitty configuration
-
-```sh
-~/nix-config/bin/rename-and-link ~/.config/kitty/ ~/nix-config/.config/kitty 
-#The result will be in current folder
-```
-
 
 ## To update the system
 ```nix 
@@ -117,3 +95,33 @@ nvd uses nix store diff-closure, but with improved reporting. Syntax for nix sto
 ```nix 
 nix store diff-closures $(ls -d1v /nix/var/nix/profiles/system-*-link|tail -n 2)
 ```
+
+# Other Package configuration
+
+## Doom Emacs configuration
+Install Doom Emacs and make sure to run  
+`doom doctor` #To check for any issues
+
+Backup ~/.emacs.d if it exists  
+
+``` sh
+mv ~/.emacs.d ~/.emacs.d.orig
+```
+
+Copy doom configuration files to ~/.nix-config/.config/doom  
+
+```sh
+~/nix-config/bin/rename-and-link.sh ~/.config/doom/ ~/nix-config/.config/doom
+```
+
+## sway config
+```sh
+~/nix-config/bin/rename-and-link ~/.config/sway/config ~/.config/sway/config
+```
+## Kitty configuration
+
+```sh
+~/nix-config/bin/rename-and-link ~/.config/kitty/ ~/nix-config/.config/kitty 
+#The result will be in current folder
+```
+

@@ -5,6 +5,11 @@ cat ~/.ssh/id_ed25519.pub
 ```
 Add the key to git repo.
 
+## Clone the git repository 
+```sh
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git clone git clone git@github.com:nazmir/nix-config.git
+```
+
 ## For the first build run nixos rebuild traditionally without flakes
 This will install git for further configuration
 ```sh
@@ -13,11 +18,6 @@ sudo nixos rebuild switch #this will setup flakes
 
 ## Create Machine specific and architecture-specific configuration files if needed.
 Use the existing confifuration files or create new ones as needed.
-
-## Clone the git repository 
-```sh
-git clone git@github.com:nazmir/nix-config.git
-```
 
 ## Link the newly renamed configuration files to the nix-config directory
 The script will backup the files in source directory (arg1) and link to target directory.

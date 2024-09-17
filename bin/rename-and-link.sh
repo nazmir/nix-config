@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Check if the correct number of arguments are provided
 if [ "$#" -ne 2 ]; then
     echo "Usage: $0 <source_file_or_directory> <target_file_or_directory>"

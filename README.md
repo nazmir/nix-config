@@ -10,14 +10,6 @@ Add the key to git repo.
 nix run --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git clone git@github.com:nazmir/nix-config.git
 ```
 
-## For the first build run nixos rebuild traditionally without flakes
-This will install git for further configuration
-```sh
-sudo nixos rebuild switch #this will setup flakes
-```
-
-## Create Machine specific and architecture-specific configuration files if needed.
-Use the existing confifuration files or create new ones as needed.
 
 ## Link the newly renamed configuration files to the nix-config directory
 The script will backup the files in source directory (arg1) and link to target directory.
@@ -29,6 +21,15 @@ sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-conf
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-armvm
 ```
+
+## For the first build run nixos rebuild traditionally without flakes
+This will install git for further configuration
+```sh
+sudo nixos rebuild switch #this will setup flakes
+```
+
+## Create Machine specific and architecture-specific configuration files if needed.
+Use the existing confifuration files or create new ones as needed.
 
 ## Enable / Install nix command
 Install nix from *determinate systems for non nixos* systems. In case of Nixos enable experimental features - this should already be enabled in configuration.nix

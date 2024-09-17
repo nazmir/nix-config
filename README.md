@@ -7,7 +7,8 @@ Add the key to git repo.
 
 ## Clone the git repository 
 ```sh
-nix run --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git clone git@github.com:nazmir/nix-config.git
+nix shell --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git
+git clone git@github.com:nazmir/nix-config.git
 ```
 
 

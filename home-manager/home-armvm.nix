@@ -49,13 +49,22 @@
 
   programs.kitty = {
     enable = true;
-    theme = "1984 Light";
-    extraConfig = "
+    theme = "Catppuccin-Mocha";
+		font = {
+			size = 10;
+			name = "Noto Sans";
+    };
+
+		extraConfig = "
+			background_opacity 1
+			background_blur 0
       remember_window_size yes
-      tab_bar_edge top
-      tab_bar_style fade
-      background_blur 90
-      tab_bar_margin_height 10.0 10.0
+      tab_bar_min_tabs 1
+			tab_bar_edge bottom
+      tab_bar_style custom
+			tab_powerline_style slanted
+			tab_title_template \" {'󰊠 ' if (index % 2) == 0 else '󰆘 '}{fmt.bold}{sup.index}\"
+			active_tab_title_template \" 󰮯 {fmt.nobold}{sup.index}\"
     ";
   };
 }

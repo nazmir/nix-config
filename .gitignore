@@ -4,3 +4,4 @@
 result
 *.bak
 hardware-configuration.nix
+.config

@@ -16,12 +16,10 @@ Use the existing confifuration files or create new ones as needed.
 ## Link the newly renamed configuration files to the nix-config directory
 The script will backup the files in source directory (arg1) and link to target directory.
 ```sh
-cp /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix 
-git add  ~/nix-config/nixos/hardware-configuration-armvm.nix
 
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix
-  
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration-armvm.nix
+DON'T LINK hardware config as it is specific to the machine. If needed add to git repo and copy it back to nixos directory.
+
+sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/configuration-armvm.nix  
   
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-armvm
 ```

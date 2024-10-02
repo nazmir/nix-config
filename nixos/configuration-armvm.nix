@@ -2,7 +2,7 @@
 {
 
   imports = [
-    ./hardware-configuration-armvm.nix
+    ./hardware-configuration.nix
     ./default.nix
   ];
   #Hostname

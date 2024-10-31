@@ -24,7 +24,9 @@
   services.xserver.enable = true;
 
   services.displayManager.sddm.enable = true;
-  services.xserver.displayManager.autoLogin.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enableHidpi = true;
+  services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "mir";
 
   services.desktopManager.plasma6.enable = true;
@@ -95,7 +97,7 @@
  # Allow unfree packages and nix flakes
   nixpkgs.config.allowUnfree = true;
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.latest;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';

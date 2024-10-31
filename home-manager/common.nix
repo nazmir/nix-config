@@ -113,6 +113,7 @@
       #emacs = "~/.config/emacs/bin/doom run";
       ll = "ls -al";
       "..." = "cd ../..";
+      gs = "git status";
     };
   };
 

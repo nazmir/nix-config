@@ -26,8 +26,8 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enableHidpi = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "mir";
+  #services.displayManager.autoLogin.enable = true;
+  #services.displayManager.autoLogin.user = "mir";
 
   services.desktopManager.plasma6.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";

@@ -6,6 +6,7 @@
     ./default.nix
     #./nvidia.nix
     ./blacklist_nvidia.nix
+    ./sunshine.nix
   ];
   #Hostname
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.

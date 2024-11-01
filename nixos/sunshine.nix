@@ -13,11 +13,6 @@
 		KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 
-	services.avahi = {
-		enable = true;
-		publish = { enable = true; };
-	};
-
 	networking.firewall = {
 		enable = true;
 		allowedTCPPorts = [ 47984 47989 48010 ];
@@ -33,7 +28,7 @@
 	
 	systemd.user.services.sunshine = {
 		description = "sunshine";
- 		#wantedBy = [ "graphical-session.target" ];
+ 		wantedBy = [ "graphical-session.target" ];
 		enable = true;
 		serviceConfig = {
 			ExecStart = "${config.security.wrapperDir}/sunshine";

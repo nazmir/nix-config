@@ -4,7 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       # Add Modules
-      ./sunshine.nix
+      #./sunshine.nix
       #./hyprland.nix
     ];
 
@@ -22,13 +22,14 @@
 
   #Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.sddm.enableHidpi = true;
+	services.xserver.displayManager.gdm.enable= true;
+  services.xserver.displayManager.gdm.wayland = true;
+	#services.displayManager.sddm.enable = true;
+  #services.displayManager.sddm.wayland.enable = true;
+  #services.displayManager.sddm.enableHidpi = true;
   #services.displayManager.autoLogin.enable = true;
   #services.displayManager.autoLogin.user = "mir";
-
+  services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
@@ -63,8 +64,11 @@
   # Firewall and enable SSH 22 port
 	networking.firewall = {
      enable = true;
-     # allowedTCPPorts = [ 22 ];
+     allowedTCPPorts = [ 22 3389 5353 ];
+     allowedUDPPorts = [ 5353 ];
   };
+
+
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
@@ -78,6 +82,14 @@
 			PasswordAuthentication = true;
 		};
 	};
+
+  services.avahi = {
+		enable = true;
+
+    nssmdns4 = true;
+	  publish = { enable = true; };
+	};
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

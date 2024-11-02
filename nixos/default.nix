@@ -64,10 +64,26 @@
   # Firewall and enable SSH 22 port
 	networking.firewall = {
      enable = true;
-     allowedTCPPorts = [ 22 3389 5353 ];
-     allowedUDPPorts = [ 5353 ];
+     allowedTCPPorts = [ 22 53 3389 3390 5353 ];
+     allowedUDPPorts = [ 53 5353 ];
   };
-
+	
+	#Avahi
+  services.avahi = {
+		enable = true;
+		openFirewall = true;
+    domainName = "local";
+    hostName = "mir-nixos-pc";
+    nssmdns4 = true;
+   publish = {
+			enable = true;
+			domain = true; 
+      workstation = true;
+      hinfo = true;
+      addresses = true;
+      userServices = true;
+	 };
+	};
 
   # Bluetooth
   hardware.bluetooth = {
@@ -81,13 +97,6 @@
 		settings = {
 			PasswordAuthentication = true;
 		};
-	};
-
-  services.avahi = {
-		enable = true;
-
-    nssmdns4 = true;
-	  publish = { enable = true; };
 	};
 
 

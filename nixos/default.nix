@@ -27,10 +27,12 @@
 	#services.displayManager.sddm.enable = true;
   #services.displayManager.sddm.wayland.enable = true;
   #services.displayManager.sddm.enableHidpi = true;
-  #services.displayManager.autoLogin.enable = true;
-  #services.displayManager.autoLogin.user = "mir";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "mir";
   services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "gnome";
+
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
   environment.systemPackages = with pkgs; [
@@ -67,7 +69,10 @@
      allowedTCPPorts = [ 22 53 3389 3390 5353 ];
      allowedUDPPorts = [ 53 5353 ];
   };
-	
+
+  #Tailscale
+  services.tailscale.enable = true;
+
 	#Avahi
   services.avahi = {
 		enable = true;

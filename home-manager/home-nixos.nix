@@ -60,7 +60,7 @@
 
   programs.kitty = {
     enable = true;
-    themeFile = "Catppuccin-Mocha";
+    themeFile = "adwaita_dark";
     extraConfig = "
       remember_window_size yes
       tab_bar_edge top

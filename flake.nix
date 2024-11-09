@@ -15,9 +15,12 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # everything match nicely? Try nix-colors!
     # nix-colors.url = "github:misterio77/nix-colors";
+
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixos-cosmic, ... }@inputs:
 
     {
 
@@ -35,7 +38,15 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
-          modules = [ ./nixos/configuration-pc.nix ];
+          modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
+            ./nixos/configuration-pc.nix ];
         };
 
         mir-nixos-armvm = nixpkgs.lib.nixosSystem {

@@ -31,7 +31,8 @@
   services.displayManager.autoLogin.user = "mir";
   services.xserver.desktopManager.gnome.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "gnome";
+  services.displayManager.defaultSession = "plasma";
+  services.desktopManager.cosmic.enable = true;
 
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 
@@ -44,6 +45,7 @@
     gparted
     git
     firefox
+    krfb
   ];
 
  # Set your time zone.

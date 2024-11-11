@@ -15,7 +15,7 @@
     fragments
     virt-manager
     kitty
-
+    cosmic-wallpapers
     #gnome
     gnome-browser-connector
     gnome-tweaks

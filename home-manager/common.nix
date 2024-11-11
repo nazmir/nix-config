@@ -41,6 +41,7 @@
     killall
     tldr
 
+    vscode
     emacs-all-the-icons-fonts
   ];
 

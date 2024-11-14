@@ -21,18 +21,28 @@
   boot.plymouth.theme = "breeze";
 
   #Enable the X11 windowing system.
-  services.xserver.enable = true;
-	services.xserver.displayManager.gdm.enable= true;
-  services.xserver.displayManager.gdm.wayland = true;
-	#services.displayManager.sddm.enable = true;
-  #services.displayManager.sddm.wayland.enable = true;
-  #services.displayManager.sddm.enableHidpi = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "mir";
-  services.xserver.desktopManager.gnome.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "plasma";
-  services.desktopManager.cosmic.enable = true;
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
+    };
+    desktopManager.gnome.enable = true;
+  };
+
+  services.displayManager = {
+    defaultSession = "gnome";
+    autoLogin = {
+        enable = true;
+        user = "mir";
+    };
+  };
+  services.desktopManager = {
+    plasma6.enable = true;
+    cosmic.enable = true;
+  };
 
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
 

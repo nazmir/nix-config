@@ -49,6 +49,8 @@ nix flake update
 ``` nix
 nh os switch --ask #Ask for confirmation before applying configuration
 nh home switch --ask
+#home-manager switch --flake '.#mir@mir-nixos-pc'
+nh home switch -c mir@mir-nixos-pc ./
 
 #To specify flakes explicitly use:
 nh os switch --ask ~/nix-config/.#mir-nixos-thinkpad

@@ -9,10 +9,7 @@
 
   home.packages = with pkgs; [
     git
-    #okular
-    #xournalpp
 
-    #fish
     grc
     fzf
 
@@ -28,7 +25,8 @@
     fd
     pandoc
     shellcheck
-    nixfmt
+    nixfmt-classic
+    nixpkgs-fmt
 
 
     #sytem utils
@@ -50,6 +48,7 @@
     FLAKE = "/home/$USER/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "/home/$USER/nix-config";
+    NIX_MAC_HOME = "/Users/$USER/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE=1;
     MOZ_USE_XINPUT2=1;
   };
@@ -57,7 +56,8 @@
   home.sessionPath = [
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
-    "/usr/local/go/bin"
+    "$NIX_MAC_HOME/bin"
+    "$HOME/.nix-profile/bin/"
   ];
 
   programs.git = {

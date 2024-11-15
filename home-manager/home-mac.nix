@@ -1,41 +1,53 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
+  
   home.username = "mir";
   home.homeDirectory = "/Users/mir";
+  
 
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    #firefox
     git
-    #fragments
 
-    #fish
-    fish
-    fishPlugins.tide
-    fishPlugins.fzf-fish
-    fishPlugins.grc
-    fishPlugins.colored-man-pages
+    grc
+    fzf
 
     #fonts
     meslo-lgs-nf
-    fira-code
-    fira-code-symbols
     source-code-pro
+    terminus-nerdfont
     nerdfonts
 
-    moonlight-qt
-
-    #emacs
-    ripgrep-all
+    ripgrep
     fd
     pandoc
     shellcheck
-    nixfmt
+    nixfmt-classic
+    nixpkgs-fmt
 
+
+    #sytem utils
+    fastfetch
+    btop
     tldr
     nh
+
+  ];
+
+
+  home.sessionVariables = {
+    FLAKE = "$HOME/dev/nix-config/";
+    FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
+    NIX_HOME = "$HOME/dev/nix-config";
+    NIXPKGS_ALLOW_UNFREE=1;
+  };
+
+  home.sessionPath = [
+    "$HOME/.config/emacs/bin"
+    "$NIX_HOME/bin"
+    "$HOME/.nix-profile/bin/"
   ];
 
   programs.git = {
@@ -49,30 +61,45 @@
     };
   };
 
+	programs.emacs = {
+		enable = true;
+		package = pkgs.emacs-gtk;
+		extraConfig = ''
+			(setq standard-indent 2)
+		'';
+	};
+
   programs.fish = {
-    enable = true;
+   enable = true;
     plugins = [
-      { name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src; }
-      {   name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src; }
+      {name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src;}
+      {name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src;}
+      {name = "fishPlugins.fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src;}
+      {name = "fishPlugins.colored-man-pages"; src= pkgs.fishPlugins.colored-man-pages.src;}
+
     ];
-    interactiveShellInit = ''
-      set -gx PATH ~/.config/emacs/bin $PATH
-    '';
+
+		shellInitLast = ''
+			if test "$TERM" = "dumb"
+  			function fish_prompt
+    			echo "\$ "
+  			end
+  			function fish_right_prompt; end
+  			function fish_greeting; end
+  			function fish_title; end
+			end
+		'';
+
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";
+      ll = "ls -al";
+      "..." = "cd ../..";
+      gs = "git status";
     };
   };
 
-  programs.emacs = {
-  	enable = true;
-  	package = pkgs.emacs-gtk;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
-  	extraConfig = ''
-    	(setq standard-indent 2)
-  	'';
-  };
 
-  programs.neovim.enable = true;
-
+  fonts.fontconfig.enable = true;
   #Allow unfree
   nixpkgs.config.allowUnfreePredicate = _: true;
 

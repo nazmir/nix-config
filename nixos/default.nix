@@ -20,15 +20,9 @@
   boot.plymouth.theme = "breeze";
 
   #Enable the X11 windowing system.
-  services.xserver = {
-    enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
-    #desktopManager.gnome.enable = true;
+  services.displayManager.sddm = {
+		enable = true;
+  	wayland.enable = true;
   };
 
   #services.displayManager = {
@@ -38,6 +32,7 @@
   #      user = "mir";
   #  };
   #};
+
   services.desktopManager = {
     plasma6.enable = true;
     #cosmic.enable = true;

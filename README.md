@@ -19,8 +19,8 @@ Don't rename hardware config to specific machine as configuration.nix
 
 ```sh
 sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/hosts/pc/configuration-pc.nix
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hardware-configuration.nix
-sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-armvm
+sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hosts/pc/hardware-configuration.nix
+sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-pc
 ```
 
 ## Install Home manager as a standalone using flakes

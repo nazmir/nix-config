@@ -4,8 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       # Add Modules
-      #./sunshine.nix
-      #./hyprland.nix
+      #./services/sunshine.nix
     ];
 
   #Boot Loader

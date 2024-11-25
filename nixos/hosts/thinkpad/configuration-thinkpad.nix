@@ -2,11 +2,11 @@
 {
 
   imports = [
-    ./hardware-configuration-thinkpad.nix
-    ./default.nix
+    ./hardware-configuration.nix
+    ../../default.nix
     #./nvidia.nix
     ./blacklist_nvidia.nix
-    ./sunshine.nix
+    ../../services/sunshine.nix
   ];
   #Hostname
   networking.hostName = "mir-nixos-thinkpad"; # Define your hostname.

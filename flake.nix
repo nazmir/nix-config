@@ -31,7 +31,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
-          modules = [ ./nixos/configuration-thinkpad.nix ];
+          modules = [ ./nixos/hosts/thinkpad/configuration-thinkpad.nix ];
         };
 
         mir-nixos-pc = nixpkgs.lib.nixosSystem {
@@ -46,13 +46,13 @@
               };
             }
             nixos-cosmic.nixosModules.default
-            ./nixos/configuration-pc.nix ];
+            ./nixos/hosts/pc/configuration-pc.nix ];
         };
 
         mir-nixos-armvm = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           specialArgs = { inherit inputs; };
-          modules = [ ./nixos/configuration-armvm.nix ];
+          modules = [ ./nixos/hosts/vm/configuration-armvm.nix ];
         };
 
       };
@@ -62,7 +62,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules = [
-            ./home-manager/home-nixos.nix
+            ./home-manager/hosts/home-nixos.nix
           ];
         };
 
@@ -70,7 +70,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules = [
-            ./home-manager/home-nixos.nix
+            ./home-manager/hosts/home-nixos.nix
           ];
         };
 
@@ -78,7 +78,7 @@
           pkgs = nixpkgs.legacyPackages."x86_64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules = [
-            ./home-manager/home-popos.nix
+            ./home-manager/hosts/home-popos.nix
           ];
         };
 
@@ -86,13 +86,13 @@
         "mir@mir-mbp14" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-darwin"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          modules = [ ./home-manager/home-mac.nix ];
+          modules = [ ./home-manager/hosts/home-mac.nix ];
         };
 
         "mir@mir-nixos-armvm" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-linux"; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
-          modules = [ ./home-manager/home-armvm.nix ];
+          modules = [ ./home-manager/hosts/home-armvm.nix ];
         };
 
 

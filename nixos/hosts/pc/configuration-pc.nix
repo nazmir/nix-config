@@ -3,9 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./default.nix
-    ./tailscale-service.nix
-    ./sunshine.nix
+    ../../default.nix
+    ../../services/tailscale-service.nix
+    ../../services/sunshine.nix
   ];
 
   networking.hostName = "mir-nixos-pc";

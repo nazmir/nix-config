@@ -1,17 +1,17 @@
 {config, pkgs, ...}: {
 
 	boot.kernelModules = [ "uinput" ];
-  users.groups.input.members = [ "mir" ];
+users.groups.input.members = [ "mir" ];
 	
 
 	environment.systemPackages = with pkgs; [
-    sunshine
-  ];
+	sunshine
+];
 
-  services.udev.extraRules = ''
+services.udev.extraRules = ''
 		# Needed for sunshine streaming
 		KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-  '';
+'';
 
 	networking.firewall = {
 		enable = true;
@@ -28,7 +28,7 @@
 	
 	systemd.user.services.sunshine = {
 		description = "sunshine";
- 		wantedBy = [ "graphical-session.target" ];
+		wantedBy = [ "graphical-session.target" ];
 		enable = true;
 		serviceConfig = {
 			ExecStart = "${config.security.wrapperDir}/sunshine";

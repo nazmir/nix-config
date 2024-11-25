@@ -23,7 +23,7 @@
         fi
 
         # otherwise authenticate with tailscale
-        ${tailscale}/bin/tailscale up -authkey 63a7c01a01a396c760f30c2c7a9f7e8ead051e075a023887a120f63faeb2e667
+        ${tailscale}/bin/tailscale up -authkey tskey-auth-kN5mgyT6Yj11CNTRL-QRcwshaVDiJJk7bjZfx6jJSe4QoxBzwEQ
       '';
     };
   }

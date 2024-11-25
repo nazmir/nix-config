@@ -33,7 +33,7 @@ nix flake update
 #this will initialize home manager and place config file in ~/.config/home-manager/home.nix 
 nix run home-manager/master -- init --switch  
   
-~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/home-armvm.nix  
+~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/hosts/home-nixos.nix  
   
 #initial evaluation with flakes  
 home-manager switch --flake /home/mir/nix-config/home-manager/.#mir@mir-nixos-thinkpad 

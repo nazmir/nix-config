@@ -114,7 +114,17 @@
       #emacs = "~/.config/emacs/bin/doom run";
       ll = "ls -al";
       "..." = "cd ../..";
+      #gs = "git status";
+    };
+
+    shellAbbrs = {
       gs = "git status";
+      ga = "git add .";
+      gc = "git commit -m";
+      gp = "git pull origin master";
+      nho = "nh os switch --ask";
+      nhh = "nh home switch --ask";
+
     };
   };
 

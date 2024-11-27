@@ -126,7 +126,7 @@
       nho = "nh os switch --ask";
       nhh = "nh home switch --ask";
       c = "clear"
-      ff = "fastfetch"
+      ff = "fastfetch";
     };
   };
 

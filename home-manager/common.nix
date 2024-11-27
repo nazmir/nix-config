@@ -125,7 +125,8 @@
       gpush = "git push origin main";
       nho = "nh os switch --ask";
       nhh = "nh home switch --ask";
-
+      c = "clear"
+      ff = "fastfetch"
     };
   };
 

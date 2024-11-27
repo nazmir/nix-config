@@ -121,8 +121,8 @@
       gs = "git status";
       ga = "git add .";
       gc = "git commit -m";
-      gpull = "git pull origin master";
-      gpush = "git push origin master";
+      gpull = "git pull origin main";
+      gpush = "git push origin main";
       nho = "nh os switch --ask";
       nhh = "nh home switch --ask";
 

@@ -3,7 +3,7 @@
 
   inputs = {
     # Nixpkgspkgs.nixVersions.unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";

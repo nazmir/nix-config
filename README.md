@@ -32,7 +32,7 @@ nix flake update
 
 #this will initialize home manager and place config file in ~/.config/home-manager/home.nix 
 nix run home-manager/master -- init --switch
-nix run home-manager/release-24.11 -- init --switch  #in case of stable release
+nix run home-manager/release-24.05 -- init --switch  #in case of stable release
   
 ~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/hosts/home-nixos.nix  
   

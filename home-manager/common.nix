@@ -39,6 +39,7 @@
     htop
     killall
     tldr
+    ethtool
 
     vscode
     emacs-all-the-icons-fonts
@@ -124,8 +125,8 @@
       gc = "git commit -m";
       gpull = "git pull origin main";
       gpush = "git push origin main";
-      nho = "nh os switch --ask";
-      nhh = "nh home switch --ask";
+      nhos = "nh os switch --ask";
+      nhhome = "nh home switch --ask";
       c = "clear";
       ff = "fastfetch";
     };

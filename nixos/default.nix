@@ -59,6 +59,7 @@
     git
     firefox
     krfb
+    pkgs.gnome-remote-desktop
   ];
 
  # Set your time zone.

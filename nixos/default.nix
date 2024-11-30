@@ -16,7 +16,7 @@
 
   #Enable the X11 windowing system.
   # services.displayManager.sddm = {
-	# 	enable = true;
+  #	enable = true;
   # 	wayland.enable = true;
   # };
 
@@ -28,10 +28,10 @@
   #  };
   #};
 
-  services.desktopManager = {
-    plasma6.enable = true;
-    cosmic.enable = true;
-  };
+  #services.desktopManager = {
+  #  plasma6.enable = true;
+  #  cosmic.enable = true;
+  #};
 
   services.xserver = {
     enable = true;
@@ -40,14 +40,13 @@
       wayland = true;
     };
     desktopManager.gnome.enable = true;
-
   };
 
-  services.gnome = {
-    gnome-remote-desktop.enable = true;
-  };
+  #services.gnome = {
+  #  gnome-remote-desktop.enable = true;
+  #};
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
+  #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
 
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -58,8 +57,8 @@
     gparted
     git
     firefox
-    krfb
-    pkgs.gnome-remote-desktop
+    #krfb
+    #pkgs.gnome-remote-desktop
   ];
 
  # Set your time zone.

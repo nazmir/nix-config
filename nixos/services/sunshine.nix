@@ -1,7 +1,7 @@
 {config, pkgs, ...}: {
 
 	boot.kernelModules = [ "uinput" ];
-users.groups.input.members = [ "mir" ];
+	users.groups.input.members = [ "mir" ];
 	
 
 	environment.systemPackages = with pkgs; [
@@ -9,9 +9,9 @@ users.groups.input.members = [ "mir" ];
 ];
 
 services.udev.extraRules = ''
-		# Needed for sunshine streaming
-		KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-'';
+	# Needed for sunshine streaming
+	KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
+	'';
 
 	networking.firewall = {
 		enable = true;

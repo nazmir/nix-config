@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      # Add Modules
-      #./services/sunshine.nix
-    ];
 
   #Boot Loader
   boot.loader.systemd-boot.enable = true;  
@@ -20,10 +15,10 @@
   boot.plymouth.theme = "breeze";
 
   #Enable the X11 windowing system.
-  services.displayManager.sddm = {
-		enable = true;
-  	wayland.enable = true;
-  };
+  # services.displayManager.sddm = {
+	# 	enable = true;
+  # 	wayland.enable = true;
+  # };
 
   #services.displayManager = {
   #  defaultSession = "plasma";
@@ -35,11 +30,24 @@
 
   services.desktopManager = {
     plasma6.enable = true;
-    #cosmic.enable = true;
+    cosmic.enable = true;
   };
 
+  services.xserver = {
+    enable = true;
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
+    desktopManager.gnome.enable = true;
+
+  };
+
+  services.gnome = {
+    gnome-remote-desktop.enable = true;
+  };
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-  #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
 
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

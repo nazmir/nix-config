@@ -27,6 +27,7 @@
     shellcheck
     nixfmt-classic
     nixpkgs-fmt
+    dconf-editor
 
 
     #sytem utils

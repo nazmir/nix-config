@@ -15,10 +15,10 @@
   boot.plymouth.theme = "breeze";
 
   #Enable the X11 windowing system.
-  # services.displayManager.sddm = {
-  #	enable = true;
-  # 	wayland.enable = true;
-  # };
+  services.displayManager.sddm = {
+  	enable = true;
+  	wayland.enable = true;
+  };
 
   services.displayManager = {
    defaultSession = "plasma";
@@ -35,10 +35,10 @@
 
   services.xserver = {
     enable = true;
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    # displayManager.gdm = {
+    #   enable = true;
+    #   wayland = true;
+    # };
     desktopManager.gnome.enable = true;
   };
 
@@ -46,8 +46,8 @@
    gnome-remote-desktop.enable = true;
   };
   
-  #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
 
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

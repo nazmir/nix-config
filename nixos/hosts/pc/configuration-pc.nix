@@ -4,7 +4,6 @@
   imports = [
     ./hardware-configuration.nix
     ../../default.nix
-    ../../services/tailscale-service.nix
     ../../services/sunshine.nix
     ../../services/gdm.nix
   ];

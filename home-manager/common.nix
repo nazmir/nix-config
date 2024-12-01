@@ -18,8 +18,13 @@
     fira-code
     fira-code-symbols
     source-code-pro
-    terminus-nerdfont
-    nerdfonts
+    nerd-fonts.meslo-lg
+    nerd-fonts.ubuntu-sans
+    nerd-fonts.zed-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    meslo-lgs-nf
+    meslo-lg
 
     ripgrep
     fd
@@ -27,7 +32,6 @@
     shellcheck
     nixfmt-classic
     nixpkgs-fmt
-    dconf-editor
 
 
     #sytem utils
@@ -81,12 +85,11 @@
 		'';
 	};
 
-  programs.neovim.enable = true;
+  #programs.neovim.enable = true;
   
-  programs.bash = {
-    enable =true;
-
-  };
+  #programs.bash = {
+  #  enable =true;
+  #};
 
   programs.fish = {
    enable = true;

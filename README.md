@@ -80,7 +80,7 @@ sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-thinkpad
 home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-thinkpad
 ```
 
-##Activating tailscale
+## Activating tailscale
 ```sh
  sudo tailscale up -authkey tskey-auth-KEY #Get key from tailscale console
 ```

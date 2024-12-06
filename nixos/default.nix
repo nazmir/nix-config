@@ -49,6 +49,18 @@
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
 
+
+  security.pam.services = { 
+    login.kwallet = { 
+      enable = true; 
+    }; 
+    kde = {  
+      kwallet = { 
+        enable = true; 
+      };
+    }; 
+  };
+
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #wget

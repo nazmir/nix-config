@@ -19,6 +19,14 @@
     defaultEditor = true;
   };
 
+  # systemd.user.services.kwalletpam = {
+  #   description = "Start kwallet pam on auto login";
+  #   serviceConfig.PassEnvironment = "DISPLAY";
+  #   script = ''
+  #     ${pkgs.kdePackages.kwallet-pam}/libexec/pam_kwallet_init
+  #   '';
+  #   wantedBy = [ "multi-user.target" ]; # starts after login
+  # }
 
   fonts.fontconfig.enable = true;
 }

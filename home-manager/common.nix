@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
@@ -10,6 +10,7 @@
   home.packages = with pkgs; [
     git
 
+    #shell utilities
     grc
     fzf
 
@@ -23,16 +24,9 @@
     nerd-fonts.zed-mono
     nerd-fonts.iosevka
     nerd-fonts.iosevka-term
+    nerd-fonts.symbols-only
     meslo-lgs-nf
     meslo-lg
-
-    ripgrep
-    fd
-    pandoc
-    shellcheck
-    nixfmt-classic
-    nixpkgs-fmt
-
 
     #sytem utils
     nh
@@ -45,18 +39,27 @@
     tldr
     ethtool
 
+    #editing
+    ripgrep
+    fd
+    pandoc
+    shellcheck
+    nixfmt-classic
+    nixpkgs-fmt
+    nixd
+    nil
     vscode
+    zed-editor
     emacs-all-the-icons-fonts
   ];
-
 
   home.sessionVariables = {
     FLAKE = "/home/$USER/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "/home/$USER/nix-config";
     NIX_MAC_HOME = "/Users/$USER/dev/nix-config";
-    NIXPKGS_ALLOW_UNFREE=1;
-    MOZ_USE_XINPUT2=1;
+    NIXPKGS_ALLOW_UNFREE = 1;
+    MOZ_USE_XINPUT2 = 1;
   };
 
   home.sessionPath = [
@@ -77,43 +80,53 @@
     };
   };
 
-	programs.emacs = {
-		enable = true;
-		package = pkgs.emacs-gtk;
-		extraConfig = ''
-			(setq standard-indent 2)
-		'';
-	};
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs-gtk;
+    extraConfig = "	(setq standard-indent 2)\n";
+  };
 
   #programs.neovim.enable = true;
-  
+
   #programs.bash = {
   #  enable =true;
   #};
 
   programs.fish = {
-   enable = true;
+    enable = true;
     plugins = [
-      {name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src;}
-      {name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src;}
-      {name = "fishPlugins.fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src;}
-      {name = "fishPlugins.colored-man-pages"; src= pkgs.fishPlugins.colored-man-pages.src;}
+      {
+        name = "fishplugin-grc-unstable";
+        src = pkgs.fishPlugins.grc.src;
+      }
+      {
+        name = "fishPlugins.tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
+      {
+        name = "fishPlugins.fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
+      }
+      {
+        name = "fishPlugins.colored-man-pages";
+        src = pkgs.fishPlugins.colored-man-pages.src;
+      }
 
     ];
     interactiveShellInit = ''
       fastfetch
     '';
 
-		shellInitLast = ''
-			if test "$TERM" = "dumb"
-  			function fish_prompt
-    			echo "\$ "
-  			end
-  			function fish_right_prompt; end
-  			function fish_greeting; end
-  			function fish_title; end
-			end
-		'';
+    shellInitLast = ''
+      			if test "$TERM" = "dumb"
+        			function fish_prompt
+          			echo "\$ "
+        			end
+        			function fish_right_prompt; end
+        			function fish_greeting; end
+        			function fish_title; end
+      			end
+      		'';
 
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";
@@ -134,7 +147,6 @@
       ff = "fastfetch";
     };
   };
-
 
   fonts.fontconfig.enable = true;
   #Allow unfree

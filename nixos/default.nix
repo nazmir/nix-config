@@ -8,12 +8,13 @@
   #boot.loader.systemd-boot.consoleMode = "max";
 
   #Boot Options
-  boot.initrd.verbose = true;
+  boot.initrd.verbose = false;
+  boot.initrd.systemd.enable = true;
   boot.kernelParams = [ "quiet" "udev.log_level=0" ];
   boot.consoleLogLevel = 0;
   boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
-
+  # boot.plymouth.theme = "breeze";
+  
   #Enable the X11 windowing system.
   services.displayManager.sddm = {
   	enable = true;
@@ -21,7 +22,7 @@
   };
 
   services.displayManager = {
-   defaultSession = "plasma";
+   defaultSession = "cosmic";
    autoLogin = {
        enable = true;
        user = "mir";
@@ -33,18 +34,18 @@
     cosmic.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-    # displayManager.gdm = {
-    #   enable = true;
-    #   wayland = true;
-    # };
-    desktopManager.gnome.enable = true;
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   # displayManager.gdm = {
+  #   #   enable = true;
+  #   #   wayland = true;
+  #   # };
+  #   desktopManager.gnome.enable = true;
+  # };
 
-  services.gnome = {
-   gnome-remote-desktop.enable = true;
-  };
+  # services.gnome = {
+  #  gnome-remote-desktop.enable = true;
+  # };
   
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
   #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
@@ -70,8 +71,8 @@
     gparted
     git
     firefox
-    #krfb
-    pkgs.gnome-remote-desktop
+    # krfb
+    # pkgs.gnome-remote-desktop
   ];
 
  # Set your time zone.
@@ -161,8 +162,6 @@
  #Flatpak, fish and other customization
   services.flatpak.enable = true;
   programs.fish.enable = true;
-  programs.dconf.enable = true;
-
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mir = {

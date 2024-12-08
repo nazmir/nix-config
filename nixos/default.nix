@@ -22,7 +22,7 @@
   };
 
   services.displayManager = {
-   defaultSession = "cosmic";
+   defaultSession = "plasma";
    autoLogin = {
        enable = true;
        user = "mir";

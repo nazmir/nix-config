@@ -6,21 +6,24 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
   };
 
-  outputs = { nixpkgs, home-manager, nixos-cosmic, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixos-cosmic, lanzaboote, ... }@inputs:
 
     {
 
@@ -46,7 +49,28 @@
               };
             }
             nixos-cosmic.nixosModules.default
-            ./nixos/hosts/pc/configuration-pc.nix ];
+
+            # lanzaboote.nixosModules.lanzaboote
+            # ({ pkgs, lib, ... }: {
+            #   environment.systemPackages = [
+            #     # For debugging and troubleshooting Secure Boot.
+            #     pkgs.sbctl
+            #   ];
+
+            #   # Lanzaboote currently replaces the systemd-boot module.
+            #   # This setting is usually set to true in configuration.nix
+            #   # generated at installation time. So we force it to false
+            #   # for now.
+            #   boot.loader.systemd-boot.enable = lib.mkForce false;
+
+            #   boot.lanzaboote = {
+            #     enable = true;
+            #     pkiBundle = "/etc/secureboot";
+            #   };
+            # })
+
+            ./nixos/hosts/pc/configuration-pc.nix 
+          ];
         };
 
         mir-nixos-armvm = nixpkgs.lib.nixosSystem {

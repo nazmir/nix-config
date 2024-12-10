@@ -13,4 +13,7 @@
     enp7s0.wakeOnLan.enable = true;
     tailscale0.wakeOnLan.enable = true;
   };
+
+  services.vscode-server.enable = true;
+
 }

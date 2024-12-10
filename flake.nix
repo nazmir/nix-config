@@ -21,9 +21,11 @@
 
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+
   };
 
-  outputs = { nixpkgs, home-manager, nixos-cosmic, lanzaboote, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixos-cosmic, lanzaboote, vscode-server, ... }@inputs:
 
     {
 
@@ -49,26 +51,8 @@
               };
             }
             nixos-cosmic.nixosModules.default
-
-            # lanzaboote.nixosModules.lanzaboote
-            # ({ pkgs, lib, ... }: {
-            #   environment.systemPackages = [
-            #     # For debugging and troubleshooting Secure Boot.
-            #     pkgs.sbctl
-            #   ];
-
-            #   # Lanzaboote currently replaces the systemd-boot module.
-            #   # This setting is usually set to true in configuration.nix
-            #   # generated at installation time. So we force it to false
-            #   # for now.
-            #   boot.loader.systemd-boot.enable = lib.mkForce false;
-
-            #   boot.lanzaboote = {
-            #     enable = true;
-            #     pkiBundle = "/etc/secureboot";
-            #   };
-            # })
-
+            vscode-server.nixosModules.default
+            
             ./nixos/hosts/pc/configuration-pc.nix 
           ];
         };
@@ -118,7 +102,6 @@
           extraSpecialArgs = { inherit inputs; }; # Pass flake inputs to our config
           modules = [ ./home-manager/hosts/home-armvm.nix ];
         };
-
 
       };
     };

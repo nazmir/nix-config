@@ -95,8 +95,8 @@
   # Firewall and enable SSH 22 port
 	networking.firewall = {
      enable = true;
-     allowedTCPPorts = [ 22 53 3389 3390 5353 ];
-     allowedUDPPorts = [ 53 5353 ];
+     allowedTCPPorts = [ 22 53 3389 3390 5353 33293 ];
+     allowedUDPPorts = [ 53 5353 33293];
   };
 
   #Tailscale

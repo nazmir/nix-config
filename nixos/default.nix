@@ -21,13 +21,13 @@
   	wayland.enable = true;
   };
 
-  services.displayManager = {
-   defaultSession = "plasma";
-   autoLogin = {
-       enable = true;
-       user = "mir";
-   };
-  };
+  # services.displayManager = {
+  #  defaultSession = "plasma";
+  #  autoLogin = {
+  #      enable = true;
+  #      user = "mir";
+  #  };
+  # };
 
   services.desktopManager = {
     plasma6.enable = true;

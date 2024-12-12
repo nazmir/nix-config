@@ -18,9 +18,7 @@
     };
 
     nix-colors.url = "github:misterio77/nix-colors";
-
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
   };

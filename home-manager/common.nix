@@ -51,6 +51,8 @@
     vscode
     zed-editor
     emacs-all-the-icons-fonts
+
+    gcompris
   ];
 
   home.sessionVariables = {

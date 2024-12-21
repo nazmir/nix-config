@@ -24,12 +24,17 @@
   programs.kitty = {
     enable = true;
     themeFile = "adwaita_dark";
-    extraConfig = "
+    extraConfig = ''
+      font_family      family="MesloLGS Nerd Font Mono"
+      bold_font        auto
+      italic_font      auto
+      bold_italic_font auto      
+      font_size 9.0
       remember_window_size yes
       tab_bar_edge top
       tab_bar_style fade
       background_blur 90
       tab_bar_margin_height 10.0 10.0
-    ";
+    '';
   };
 }

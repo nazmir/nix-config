@@ -16,9 +16,17 @@
 
     #fonts
     meslo-lgs-nf
+    fira-code
+    fira-code-symbols
     source-code-pro
-    terminus-nerdfont
-    nerdfonts
+    nerd-fonts.meslo-lg
+    nerd-fonts.ubuntu-sans
+    nerd-fonts.zed-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.symbols-only
+    meslo-lgs-nf
+    meslo-lg
 
     ripgrep
     fd
@@ -69,32 +77,59 @@
 		'';
 	};
 
-  programs.fish = {
-   enable = true;
+programs.fish = {
+    enable = true;
     plugins = [
-      {name = "fishplugin-grc-unstable"; src = pkgs.fishPlugins.grc.src;}
-      {name = "fishPlugins.tide"; src = pkgs.fishPlugins.tide.src;}
-      {name = "fishPlugins.fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src;}
-      {name = "fishPlugins.colored-man-pages"; src= pkgs.fishPlugins.colored-man-pages.src;}
+      {
+        name = "fishplugin-grc-unstable";
+        src = pkgs.fishPlugins.grc.src;
+      }
+      {
+        name = "fishPlugins.tide";
+        src = pkgs.fishPlugins.tide.src;
+      }
+      {
+        name = "fishPlugins.fzf-fish";
+        src = pkgs.fishPlugins.fzf-fish.src;
+      }
+      {
+        name = "fishPlugins.colored-man-pages";
+        src = pkgs.fishPlugins.colored-man-pages.src;
+      }
 
     ];
+    interactiveShellInit = ''
+      fastfetch
+    '';
 
-		shellInitLast = ''
-			if test "$TERM" = "dumb"
-  			function fish_prompt
-    			echo "\$ "
-  			end
-  			function fish_right_prompt; end
-  			function fish_greeting; end
-  			function fish_title; end
-			end
-		'';
+    shellInitLast = ''
+      			if test "$TERM" = "dumb"
+        			function fish_prompt
+          			echo "\$ "
+        			end
+        			function fish_right_prompt; end
+        			function fish_greeting; end
+        			function fish_title; end
+      			end
+      		'';
 
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";
       ll = "ls -al";
       "..." = "cd ../..";
+      #gs = "git status";
+    };
+
+    shellAbbrs = {
       gs = "git status";
+      ga = "git add .";
+      gc = "git commit -m";
+      gpull = "git pull origin main";
+      gpush = "git push origin main";
+      nhos = "nh os switch --ask";
+      nhhome = "nh home switch --ask";
+      c = "clear";
+      ff = "fastfetch";
     };
   };
 

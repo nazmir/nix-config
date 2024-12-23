@@ -31,24 +31,24 @@
 
   services.desktopManager = {
     plasma6.enable = true;
-    cosmic.enable = true;
+    #cosmic.enable = true;
   };
 
-  services.xserver = {
-    enable = true;
-  #   # displayManager.gdm = {
-  #   #   enable = true;
-  #   #   wayland = true;
-  #   # };
-    desktopManager.gnome.enable = true;
-  };
+  # services.xserver = {
+  #   enable = true;
+  #   displayManager.gdm = {
+  #     enable = true;
+  #     wayland = true;
+  #   };
+  #   desktopManager.gnome.enable = true;
+  # };
 
   # services.gnome = {
   #  gnome-remote-desktop.enable = true;
   # };
   
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
-  #programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
+  # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.ksshaskpass.out}/bin/ksshaskpass";
+  # programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.seahorse.out}/libexec/seahorse/ssh-askpass";
 
 
   security.pam.services = { 

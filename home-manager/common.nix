@@ -56,9 +56,9 @@
   ];
 
   home.sessionVariables = {
-    FLAKE = "/home/$USER/nix-config/";
+    FLAKE = "/home/$USER/dev/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
-    NIX_HOME = "/home/$USER/nix-config";
+    NIX_HOME = "/home/$USER/dev/nix-config";
     NIX_MAC_HOME = "/Users/$USER/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE = 1;
     MOZ_USE_XINPUT2 = 1;

@@ -14,6 +14,6 @@
     tailscale0.wakeOnLan.enable = true;
   };
 
-  services.vscode-server.enable = true;
+  # services.vscode-server.enable = true;
 
 }

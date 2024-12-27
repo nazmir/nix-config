@@ -31,7 +31,7 @@
 
   services.desktopManager = {
     plasma6.enable = true;
-    #cosmic.enable = true;
+    cosmic.enable = true;
   };
 
   # services.xserver = {

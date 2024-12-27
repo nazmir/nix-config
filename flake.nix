@@ -11,6 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
     # lanzaboote = {
     #   url = "github:nix-community/lanzaboote/v0.4.1";
     #   # Optional but recommended to limit the size of your system closure.
@@ -23,7 +25,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, nixos-cosmic, ... }@inputs:
 
     {
 
@@ -45,10 +47,9 @@
             {
               nix.settings = {
                 substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-              };
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];              };
             }
-            # nixos-cosmic.nixosModules.default
+            nixos-cosmic.nixosModules.default
             # vscode-server.nixosModules.default
             
             ./nixos/hosts/pc/configuration-pc.nix 

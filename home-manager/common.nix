@@ -53,6 +53,7 @@
     emacs-all-the-icons-fonts
 
     gcompris
+    alacritty
   ];
 
   home.sessionVariables = {

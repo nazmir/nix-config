@@ -15,13 +15,13 @@
   boot.plymouth.enable = true;
   # boot.plymouth.theme = "breeze";
   
-  #Enable the X11 windowing system.
-  # services.displayManager.sddm = {
-  # 	enable = true;
-  # 	wayland.enable = true;
-  # };
+  # Enable the X11 windowing system.
+  services.displayManager.sddm = {
+  	enable = true;
+  	wayland.enable = true;
+  };
 
-  services.displayManager.cosmic-greeter.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
 
   # services.displayManager = {
   #  defaultSession = "plasma";
@@ -141,7 +141,7 @@
 
   # Enable sound with pipewire.
   #sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

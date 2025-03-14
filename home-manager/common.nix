@@ -38,6 +38,7 @@
     killall
     tldr
     ethtool
+    nmap
 
     #editing
     ripgrep
@@ -54,6 +55,7 @@
 
     gcompris
     alacritty
+
   ];
 
   home.sessionVariables = {

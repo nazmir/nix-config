@@ -41,6 +41,7 @@
     btop
     tldr
     nh
+    nmap
 
   ];
 
@@ -117,7 +118,8 @@ programs.fish = {
       #emacs = "~/.config/emacs/bin/doom run";
       ll = "ls -al";
       "..." = "cd ../..";
-      #gs = "git status";
+      python = "python3";
+      pip = "pip3";
     };
 
     shellAbbrs = {

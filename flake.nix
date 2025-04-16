@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    #nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     # lanzaboote = {
     #   url = "github:nix-community/lanzaboote/v0.4.1";
@@ -25,7 +25,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nixos-cosmic, ... }@inputs:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
 
     {
 
@@ -43,15 +43,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; }; # Pass flake inputs to our config
           # > Our main nixos configuration file <
-          modules = [
-            {
-              nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];              };
-            }
-            nixos-cosmic.nixosModules.default
-            # vscode-server.nixosModules.default
-            
+          modules = [  
             ./nixos/hosts/pc/configuration-pc.nix 
           ];
         };

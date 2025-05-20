@@ -51,12 +51,18 @@
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "$HOME/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE=1;
+    HOMEBREW_PREFIX = "/opt/homebrew";
+    HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+    HOMEBREW_REPOSITORY = "/opt/homebrew";
+    INFOPATH = "/opt/homebrew/share/info";
   };
 
   home.sessionPath = [
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
     "$HOME/.nix-profile/bin/"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
   ];
 
   programs.git = {

@@ -12,12 +12,12 @@
     };
   };
 
-  services.emacs = {
-    enable = true;
-    startWithUserSession = "graphical";
-    socketActivation.enable = true;
-    defaultEditor = true;
-  };
+  # services.emacs = {
+  #   enable = true;
+  #   startWithUserSession = "graphical";
+  #   socketActivation.enable = true;
+  #   defaultEditor = true;
+  # };
 
   # systemd.user.services.kwalletpam = {
   #   description = "Start kwallet pam on auto login";

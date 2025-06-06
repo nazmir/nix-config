@@ -50,8 +50,8 @@
     nixd
     nil
     vscode
-    zed-editor
     emacs-all-the-icons-fonts
+    windsurf
 
     gcompris
     alacritty
@@ -60,6 +60,7 @@
 
   home.sessionVariables = {
     FLAKE = "/home/$USER/dev/nix-config/";
+    NH_FLAKE = "/home/$USER/dev/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "/home/$USER/dev/nix-config";
     NIX_MAC_HOME = "/Users/$USER/dev/nix-config";
@@ -85,11 +86,11 @@
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs-gtk;
-    extraConfig = "	(setq standard-indent 2)\n";
-  };
+  # programs.emacs = {
+  #   enable = true;
+  #   package = pkgs.emacs-gtk;
+  #   extraConfig = "	(setq standard-indent 2)\n";
+  # };
 
   #programs.neovim.enable = true;
 

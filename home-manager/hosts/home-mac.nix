@@ -76,13 +76,13 @@
     };
   };
 
-	programs.emacs = {
-		enable = true;
-		package = pkgs.emacs-gtk;
-		extraConfig = ''
-			(setq standard-indent 2)
-		'';
-	};
+	# programs.emacs = {
+	# 	enable = true;
+	# 	package = pkgs.emacs-gtk;
+	# 	extraConfig = ''
+	# 		(setq standard-indent 2)
+	# 	'';
+	# };
 
 programs.fish = {
     enable = true;

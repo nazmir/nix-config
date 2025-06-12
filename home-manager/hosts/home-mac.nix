@@ -63,6 +63,7 @@
     "$HOME/.nix-profile/bin/"
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
+    "/Users/mir/Library/Python/3.9/bin"
   ];
 
   programs.git = {

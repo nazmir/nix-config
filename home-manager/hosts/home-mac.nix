@@ -35,7 +35,6 @@
     nixfmt-classic
     nixpkgs-fmt
 
-
     #sytem utils
     fastfetch
     btop
@@ -48,6 +47,7 @@
 
   home.sessionVariables = {
     FLAKE = "$HOME/dev/nix-config/";
+    NH_FLAKE = "$HOME/dev/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "$HOME/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE=1;
@@ -78,6 +78,13 @@
       push.default = "simple";
     };
   };
+
+  # Configure direnv
+  programs.direnv = {
+    enable = true;
+  };
+
+
 
 	# programs.emacs = {
 	# 	enable = true;

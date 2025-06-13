@@ -59,11 +59,10 @@
   ];
 
   home.sessionVariables = {
-    FLAKE = "/home/$USER/dev/nix-config/";
-    NH_FLAKE = "/home/$USER/dev/nix-config/";
+    FLAKE = "$HOME/dev/nix-config/";
+    NH_FLAKE = "$HOME/dev/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
-    NIX_HOME = "/home/$USER/dev/nix-config";
-    NIX_MAC_HOME = "/Users/$USER/dev/nix-config";
+    NIX_HOME = "$HOME/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE = 1;
     MOZ_USE_XINPUT2 = 1;
   };
@@ -71,7 +70,6 @@
   home.sessionPath = [
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
-    "$NIX_MAC_HOME/bin"
     "$HOME/.nix-profile/bin/"
   ];
 
@@ -84,6 +82,12 @@
       pull.rebase = true;
       push.default = "simple";
     };
+  };
+
+  # Configure direnv
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   # programs.emacs = {

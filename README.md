@@ -34,7 +34,7 @@ Before installing home manager run nix flake update and then link the config fil
 cd ~/dev/nix-config
 nix flake update
 
-#The below will install nix from upstream and not determinate
+#For non nixos systems like macOS. The below will install nix from upstream and not determinate.
 curl -fsSL https://install.determinate.systems/nix | sh -s -- install
 
 #this will initialize home manager and place config file in ~/.config/home-manager/home.nix 

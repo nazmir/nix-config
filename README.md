@@ -27,7 +27,7 @@ sudo ~/dev/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.n
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-pc
 ```
 
-## Install Home manager as a standalone using flakes
+## Install Home manager as a standalone using flakes for nixos and non nixos systems
 Before installing home manager run nix flake update and then link the config file to git repo
 
 ``` nix

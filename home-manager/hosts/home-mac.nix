@@ -116,6 +116,7 @@ programs.fish = {
 
     ];
     interactiveShellInit = ''
+      direnv hook fish | source
       fastfetch
     '';
 

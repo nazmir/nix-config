@@ -124,6 +124,7 @@
 
     ];
     interactiveShellInit = ''
+      direnv hook fish | source
       fastfetch
     '';
 

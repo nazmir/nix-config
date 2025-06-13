@@ -44,7 +44,14 @@ rm ~/.config/home-manager/flake.*
 ~/dev/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/dev/nix-config/home-manager/hosts/home-nixos.nix  
   
 #initial evaluation with flakes  
-home-manager switch --flake ~/dev/nix-config/.#mir@mir-nixos-pc 
+home-manager switch --flake ~/dev/nix-config/.#mir@mir-nixos-pc
+
+#configure prompt for fish with tide as fish is installed now via home-manager
+tide configure --auto --style=Rainbow --prompt_colors='True color' --show_time='24-hour format' --rainbow_prompt_separators=Vertical --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Sparse --icons='Many icons' --transient=No
+
+#macos specific functionality
+sudo sh -c 'echo /Users/mir/.nix-profile/bin/fish >> /etc/shells'
+sudo chsh -s /Users/mir/.nix-profile/bin/fish 
 ```
 
 ## To update the system

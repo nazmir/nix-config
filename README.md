@@ -5,21 +5,25 @@ cat ~/.ssh/id_ed25519.pub
 ```
 Add the key to git repo.
 
-## Clone the git repository 
+## Install nix on non nixos systems e.g. for macos:
+```sh
+#The below will install nix from upstream and not determinate
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+```
+
+## Clone the git repository; using nix shell instead of run as we need git for the session
 ```sh
 nix shell --extra-experimental-features nix-command --extra-experimental-features flakes nixpkgs#git
 git clone git@github.com:nazmir/nix-config.git
 ```
-## Create Machine specific and architecture-specific configuration files if needed.
-Use the existing confifuration files or create new ones as needed.
 
 ## Link the newly renamed configuration files to the nix-config directory
 The script will backup the files in source directory (arg1) and link to target directory.  
 Don't rename hardware config to specific machine as configuration.nix
 
 ```sh
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/nix-config/nixos/hosts/pc/configuration-pc.nix
-sudo ~/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/nix-config/nixos/hosts/pc/hardware-configuration.nix
+sudo ~/dev/nix-config/bin/rename-and-link.sh /etc/nixos/configuration.nix ~/dev/nix-config/nixos/hosts/pc/configuration-pc.nix
+sudo ~/dev/nix-config/bin/rename-and-link.sh /etc/nixos/hardware-configuration.nix ~/dev/nix-config/nixos/hosts/pc/hardware-configuration.nix
 sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-pc
 ```
 
@@ -27,16 +31,20 @@ sudo nixos-rebuild switch --flake /home/mir/nix-config/.#mir-nixos-pc
 Before installing home manager run nix flake update and then link the config file to git repo
 
 ``` nix
-cd ~/nix-config
+cd ~/dev/nix-config
 nix flake update
 
+#The below will install nix from upstream and not determinate
+curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+
 #this will initialize home manager and place config file in ~/.config/home-manager/home.nix 
-nix run home-manager/master -- init
-  
-~/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/nix-config/home-manager/hosts/home-nixos.nix  
+nix run home-manager/master -- init --switch
+
+rm ~/.config/home-manager/flake.*
+~/dev/nix-config/bin/rename-and-link.sh ~/.config/home-manager/home.nix ~/dev/nix-config/home-manager/hosts/home-nixos.nix  
   
 #initial evaluation with flakes  
-home-manager switch --flake /home/mir/nix-config/.#mir@mir-nixos-pc 
+home-manager switch --flake ~/dev/nix-config/.#mir@mir-nixos-pc 
 ```
 
 ## To update the system
@@ -53,10 +61,10 @@ nh home switch --ask
 nh home switch -c mir@mir-nixos-pc ./
 
 #To specify flakes explicitly use:
-nh os switch --ask ~/nix-config/.#mir-nixos-thinkpad
+nh os switch --ask ~/dev/nix-config/.#mir-nixos-thinkpad
 
 #To use the current hostname and specify flake path reference use:
-nh os switch --ask ~/nix-config/ 
+nh os switch --ask ~/dev/nix-config/ 
 ```
 
 ## Garbage collection using *`nh`* helper
@@ -116,17 +124,17 @@ mv ~/.emacs.d ~/.emacs.d.orig
 Copy doom configuration files to ~/.nix-config/.config/doom  
 
 ```sh
-~/nix-config/bin/rename-and-link.sh ~/.config/doom/ ~/nix-config/.config/doom
+~/dev/nix-config/bin/rename-and-link.sh ~/.config/doom/ ~/dev/nix-config/.config/doom
 ```
 
 ## sway config
 ```sh
-~/nix-config/bin/rename-and-link ~/.config/sway/config ~/.config/sway/config
+~/dev/nix-config/bin/rename-and-link ~/.config/sway/config ~/.config/sway/config
 ```
 ## Kitty configuration
 
 ```sh
-~/nix-config/bin/rename-and-link ~/.config/kitty/ ~/nix-config/.config/kitty 
+~/dev/nix-config/bin/rename-and-link ~/.config/kitty/ ~/dev/nix-config/.config/kitty 
 #The result will be in current folder
 ```
 

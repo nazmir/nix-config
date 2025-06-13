@@ -58,9 +58,11 @@
   };
 
   home.sessionPath = [
+    
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
     "$HOME/.nix-profile/bin/"
+    "/nix/var/nix/profiles/default/bin"
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
     "/Users/mir/Library/Python/3.9/bin"

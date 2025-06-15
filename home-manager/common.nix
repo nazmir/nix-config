@@ -37,7 +37,6 @@
     fastfetch
     btop
     tldr
-    nh
     nmap
 
     #shells
@@ -46,8 +45,6 @@
   ];
 
   home.sessionVariables = {
-    FLAKE = "$HOME/dev/nix-config/";
-    NH_FLAKE = "$HOME/dev/nix-config/";
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "$HOME/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE = 1;
@@ -83,6 +80,11 @@
       pull.rebase = true;
       push.default = "simple";
     };
+  };
+
+  programs.nh = {
+    enable = true;
+    flake = "$HOME/dev/nix-config";
   };
 
   # Configure direnv

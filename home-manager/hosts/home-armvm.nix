@@ -3,8 +3,9 @@
 {
   imports = [
       ../common.nix
+      ../common-linux.nix
   ];
-
+  
   home.packages = with pkgs; [
     gparted
     kitty

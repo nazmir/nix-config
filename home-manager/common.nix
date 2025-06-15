@@ -2,12 +2,9 @@
 
 {
 
-  home.username = "mir";
-  home.homeDirectory = "/home/mir";
-
-  home.stateVersion = "23.05"; # Please read the comment before changing.
-
   home.packages = with pkgs; [
+    
+    #basics
     git
 
     #shell utilities
@@ -28,34 +25,24 @@
     meslo-lgs-nf
     meslo-lg
 
-    #sytem utils
-    nh
-    nvd
-    nix-du
-    fastfetch
-    btop
-    htop
-    killall
-    tldr
-    ethtool
-    nmap
-
-    #editing
+    #lang utils
     ripgrep
     fd
     pandoc
     shellcheck
     nixfmt-classic
     nixpkgs-fmt
-    nixd
-    nil
-    vscode
-    emacs-all-the-icons-fonts
-    windsurf
 
-    gcompris
-    alacritty
+    #sytem utils
+    fastfetch
+    btop
+    tldr
+    nh
+    nmap
 
+    #shells
+    nushell
+ 
   ];
 
   home.sessionVariables = {
@@ -64,6 +51,14 @@
     FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     NIX_HOME = "$HOME/dev/nix-config";
     NIXPKGS_ALLOW_UNFREE = 1;
+
+    #macos specific env
+    HOMEBREW_PREFIX = "/opt/homebrew";
+    HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+    HOMEBREW_REPOSITORY = "/opt/homebrew";
+    INFOPATH = "/opt/homebrew/share/info";
+
+    #linux specific env
     MOZ_USE_XINPUT2 = 1;
   };
 
@@ -71,6 +66,12 @@
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
     "$HOME/.nix-profile/bin/"
+
+    #macos specific paths
+    "/nix/var/nix/profiles/default/bin"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+    "/Users/mir/Library/Python/3.9/bin"
   ];
 
   programs.git = {
@@ -87,20 +88,27 @@
   # Configure direnv
   programs.direnv = {
     enable = true;
-    enableFishIntegration = true;
   };
 
-  # programs.emacs = {
-  #   enable = true;
-  #   package = pkgs.emacs-gtk;
-  #   extraConfig = "	(setq standard-indent 2)\n";
-  # };
+  programs.nushell = { 
+    enable = true;
+    # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
+    #configFile.source = ./.../config.nu;
+    # extraConfig = ''
+    #  '';
 
-  #programs.neovim.enable = true;
+  };
 
-  #programs.bash = {
-  #  enable =true;
-  #};
+  programs.starship = { 
+    enable = true;
+    settings = {
+      add_newline = true;
+      character = { 
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+    };
+  };
 
   programs.fish = {
     enable = true;

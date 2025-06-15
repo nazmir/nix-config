@@ -22,6 +22,7 @@
     nerd-fonts.iosevka
     nerd-fonts.iosevka-term
     nerd-fonts.symbols-only
+    nerd-fonts.jetbrains-mono
     meslo-lgs-nf
     meslo-lg
 
@@ -92,24 +93,8 @@
     enable = true;
   };
 
-  programs.nushell = { 
-    enable = true;
-    # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
-    #configFile.source = ./.../config.nu;
-    # extraConfig = ''
-    #  '';
-
-  };
-
   programs.starship = { 
     enable = true;
-    settings = {
-      add_newline = true;
-      character = { 
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
-      };
-    };
   };
 
   programs.fish = {
@@ -135,6 +120,7 @@
     ];
     interactiveShellInit = ''
       direnv hook fish | source
+      starship init fish | source
       fastfetch
     '';
 

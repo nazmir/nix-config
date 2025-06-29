@@ -35,13 +35,9 @@
     nixpkgs-fmt
 
     #sytem utils
-    fastfetch
     btop
     tldr
     nmap
-
-    #shells
-    nushell
  
   ];
 

@@ -95,40 +95,29 @@
 
   programs.fish = {
     enable = true;
-    plugins = [
-      {
-        name = "fishplugin-grc-unstable";
-        src = pkgs.fishPlugins.grc.src;
-      }
-      {
-        name = "fishPlugins.tide";
-        src = pkgs.fishPlugins.tide.src;
-      }
-      {
-        name = "fishPlugins.fzf-fish";
-        src = pkgs.fishPlugins.fzf-fish.src;
-      }
-      {
-        name = "fishPlugins.colored-man-pages";
-        src = pkgs.fishPlugins.colored-man-pages.src;
-      }
 
+    plugins = [
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; } 
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
+      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
     ];
+
     interactiveShellInit = ''
       direnv hook fish | source
       starship init fish | source
     '';
 
     shellInitLast = ''
-      			if test "$TERM" = "dumb"
-        			function fish_prompt
-          			echo "\$ "
-        			end
-        			function fish_right_prompt; end
-        			function fish_greeting; end
-        			function fish_title; end
-      			end
-      		'';
+      if test "$TERM" = "dumb"
+        function fish_prompt
+          echo "\$ "
+        end
+        function fish_right_prompt; end
+        function fish_greeting; end
+        function fish_title; end
+      end
+    '';
 
     shellAliases = {
       #emacs = "~/.config/emacs/bin/doom run";

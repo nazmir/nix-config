@@ -97,7 +97,7 @@
     enable = true;
 
     plugins = [
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; } 
+      #{ name = "grc"; src = pkgs.fishPlugins.grc.src; } 
       { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
       { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }

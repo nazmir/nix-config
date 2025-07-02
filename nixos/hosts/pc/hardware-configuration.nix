@@ -10,8 +10,8 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  #boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [ 
+		"nvidia_drm.fbdev=1"
     "video=DP-1:3840x2160@60"
   ];
 

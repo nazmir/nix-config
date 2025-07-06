@@ -10,8 +10,12 @@
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ "nvidia" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.kernelParams = [ 
 		"nvidia_drm.fbdev=1"
+    "module_blacklist=amdgpu"
+    "nouveau"
     "video=DP-1:3840x2160@60"
   ];
 

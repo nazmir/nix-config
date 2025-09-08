@@ -38,6 +38,10 @@
     btop
     tldr
     nmap
+
+    #other utils
+    yt-dlp
+    ffmpeg
  
   ];
 

@@ -38,9 +38,6 @@
     btop
     tldr
     nmap
-
-    #other utils
-    youtube-dl
  
   ];
 

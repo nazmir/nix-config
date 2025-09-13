@@ -187,9 +187,9 @@
   };
 
 	# Systemd config
-  systemd.extraConfig = ''
-    DefaultTimeoutStopSec=10s
-  '';
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "10s";
+  };
 
 
   system.stateVersion = "23.05"; # Did you read the comment?

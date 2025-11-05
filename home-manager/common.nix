@@ -74,9 +74,9 @@
 
   programs.git = {
     enable = true;
-    userEmail = "mirnaz.hussain@gmail.com";
-    userName = "Naz Mir";
-    extraConfig = {
+    settings = {
+      user.email = "mirnaz.hussain@gmail.com";
+      user.name = "Naz Mir";
       init.defaultBranch = "main";
       pull.rebase = true;
       push.default = "simple";

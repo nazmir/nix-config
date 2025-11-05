@@ -26,7 +26,6 @@
     windsurf
 
     #system utils
-    gcompris
     alacritty
   ];
 

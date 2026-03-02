@@ -10,4 +10,8 @@
   home.homeDirectory = "/Users/mir";
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  home.packages = with pkgs; [
+    #sytem utils
+    maccy
+  ];
 }

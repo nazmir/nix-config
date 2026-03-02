@@ -19,8 +19,8 @@
     nerd-fonts.meslo-lg
     nerd-fonts.ubuntu-sans
     nerd-fonts.zed-mono
-    nerd-fonts.iosevka
-    nerd-fonts.iosevka-term
+    #nerd-fonts.iosevka
+    #nerd-fonts.iosevka-term
     nerd-fonts.symbols-only
     nerd-fonts.jetbrains-mono
     meslo-lgs-nf
@@ -31,7 +31,7 @@
     fd
     pandoc
     shellcheck
-    nixfmt-classic
+    nixfmt
     nixpkgs-fmt
 
     #sytem utils
@@ -40,8 +40,8 @@
     nmap
 
     #other utils
-    yt-dlp
-    ffmpeg
+    #yt-dlp
+    #ffmpeg
  
   ];
 

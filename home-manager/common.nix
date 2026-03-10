@@ -64,6 +64,7 @@
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
     "$HOME/.nix-profile/bin/"
+    "$HOME/.local/bin:$PATH"
 
     #macos specific paths
     "/nix/var/nix/profiles/default/bin"

@@ -94,8 +94,9 @@
     enable = true;
   };
 
-  programs.starship = { 
+  programs.starship = {
     enable = true;
+    enableZshIntegration = true;
   };
 
   # programs.fish = {
@@ -168,8 +169,8 @@
       gpush = "git push origin main";
       nhos = "nh os switch --ask";
       nhhome = "nh home switch --ask";
+      rm = "safe-rm";
       c = "clear";
-      ff = "fastfetch";
     };
 
     plugins = [

@@ -39,6 +39,9 @@
     tldr
     nmap
 
+    #development
+    github-cli
+
     #other utils
     #yt-dlp
     #ffmpeg
@@ -75,6 +78,7 @@
 
   programs.git = {
     enable = true;
+    signing.format = null;
     settings = {
       user.email = "mirnaz.hussain@gmail.com";
       user.name = "Naz Mir";
@@ -87,11 +91,6 @@
   programs.nh = {
     enable = true;
     flake = "$HOME/dev/nix-config";
-  };
-
-  # Configure direnv
-  programs.direnv = {
-    enable = true;
   };
 
   programs.starship = {

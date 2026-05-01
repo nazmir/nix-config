@@ -64,13 +64,13 @@
     "$HOME/.config/emacs/bin"
     "$NIX_HOME/bin"
     "$HOME/.nix-profile/bin/"
-    "$HOME/.local/bin:$PATH"
+    "$HOME/.local/bin"
+    "$HOME/.cargo/bin"
 
     #macos specific paths
     "/nix/var/nix/profiles/default/bin"
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
-    "/Users/mir/Library/Python/3.9/bin"
   ];
 
   programs.git = {
@@ -98,40 +98,69 @@
     enable = true;
   };
 
-  programs.fish = {
+  # programs.fish = {
+  #   enable = true;
+  #
+  #   plugins = [
+  #     #{ name = "grc"; src = pkgs.fishPlugins.grc.src; }
+  #     { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+  #     { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
+  #     { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
+  #   ];
+  #
+  #   interactiveShellInit = ''
+  #     direnv hook fish | source
+  #     starship init fish | source
+  #   '';
+  #
+  #   shellInitLast = ''
+  #     if test "$TERM" = "dumb"
+  #       function fish_prompt
+  #         echo "\$ "
+  #       end
+  #       function fish_right_prompt; end
+  #       function fish_greeting; end
+  #       function fish_title; end
+  #     end
+  #   '';
+  #
+  #   shellAliases = {
+  #     #emacs = "~/.config/emacs/bin/doom run";
+  #     ll = "ls -al";
+  #     "..." = "cd ../..";
+  #     #gs = "git status";
+  #   };
+  #
+  #   shellAbbrs = {
+  #     gs = "git status";
+  #     ga = "git add .";
+  #     gc = "git commit -m";
+  #     gpull = "git pull origin main";
+  #     gpush = "git push origin main";
+  #     nhos = "nh os switch --ask";
+  #     nhhome = "nh home switch --ask";
+  #     c = "clear";
+  #     ff = "fastfetch";
+  #   };
+  # };
+
+  programs.zsh = {
     enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
-    plugins = [
-      #{ name = "grc"; src = pkgs.fishPlugins.grc.src; } 
-      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      { name = "colored-man-pages"; src = pkgs.fishPlugins.colored-man-pages.src; }
-      { name = "sponge"; src = pkgs.fishPlugins.sponge.src; }
-    ];
-
-    interactiveShellInit = ''
-      direnv hook fish | source
-      starship init fish | source
-    '';
-
-    shellInitLast = ''
-      if test "$TERM" = "dumb"
-        function fish_prompt
-          echo "\$ "
-        end
-        function fish_right_prompt; end
-        function fish_greeting; end
-        function fish_title; end
-      end
-    '';
-
-    shellAliases = {
-      #emacs = "~/.config/emacs/bin/doom run";
-      ll = "ls -al";
-      "..." = "cd ../..";
-      #gs = "git status";
+    history = {
+      size = 10000;
+      save = 10000;
+      ignoreDups = true;
+      ignoreAllDups = true;
+      share = true;
     };
 
-    shellAbbrs = {
+    shellAliases = {
+      ll = "ls -al";
+      "..." = "cd ../..";
       gs = "git status";
       ga = "git add .";
       gc = "git commit -m";
@@ -142,6 +171,28 @@
       c = "clear";
       ff = "fastfetch";
     };
+
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+    ];
+
+    initExtra = ''
+      # Dumb terminal support (Emacs TRAMP etc.)
+      if [[ "$TERM" == "dumb" ]]; then
+        unsetopt zle
+        PS1='$ '
+        return
+      fi
+    '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   fonts.fontconfig.enable = true;

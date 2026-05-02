@@ -41,6 +41,7 @@
 
     #development
     github-cli
+    cloc
 
     #other utils
     #yt-dlp
